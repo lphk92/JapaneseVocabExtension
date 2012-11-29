@@ -1,32 +1,35 @@
 import sys
 
-def createJson(fileName, delimeter):
+def createJavascriptList(fileName, delimeter, outputName):
     data = open(fileName, 'r')
     entries = data.readlines()
-    json = "\"vocabList\":["
+    jscript = "var " + outputName + " = ["
     for entry in entries:
         parts = entry.split(delimeter)
         if len(parts) == 3:
-            json += "\n{\n\"kanji\":\"" + parts[0] + "\",\n\"kana\":\"" + parts[1] + "\",\n\"meaning\":\"" + parts[2].strip() + "\"\n},"
+            jscript += "\n{\n\"visible\": true,\n\"kanji\":\"" + parts[0] + "\",\n\"reading\":\"" + parts[1] + "\",\n\"meaning\":\"" + parts[2].strip() + "\"\n},"
 
-    json = json[0:len(json)-1]
-    json += "]"
+    jscript = jscript[0:len(jscript)-1]
+    jscript += "];"
 
-    fout = open("output.json", 'w')
-    fout.write(json);
-    print "JSON written to 'output.json'"
+    fout = open(outputName + ".js", 'w')
+    fout.write(jscript)
+    fout.close()
+    print "JavaScript written to '" + outputName + ".js'"
 
 def main():
-    if not len(sys.argv) == 3:
-        print "Must have two arguments, fileName and delimeter"
+    if not len(sys.argv) == 4:
+        print "Must have two arguments, fileName, delimeter and outputName"
         return
          
     fileName = sys.argv[1]
     delimeter = sys.argv[2]
+    outputName = sys.argv[3]
     print "Your file name is -- ", fileName
     print "Your delimeter is -- ", delimeter
+    print "Your output name is -- ", outputName 
 
-    createJson(fileName, delimeter)
+    createJavascriptList(fileName, delimeter, outputName)
 
 if __name__ == '__main__':
     main()
