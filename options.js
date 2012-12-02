@@ -6,7 +6,7 @@ function saveOptions()
     localStorage["showReadingQuestion"] = readingQuestion.checked;
     localStorage["showReadingAnswer"] = readingAnswer.checked;
 
-    alert ("Options saved");
+    //alert ("Options saved");
 }
 
 function loadOptions()
@@ -20,7 +20,7 @@ function loadOptions()
     readingQuestion.checked = showReadingQuestion == "true";
     readingAnswer.checked = showReadingAnswer == "true";
 
-    alert("Options loaded");
+    //alert("Options loaded");
 }
 
 document.addEventListener('DOMContentLoaded', loadOptions);
