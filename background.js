@@ -1,3 +1,6 @@
+var verbList = retrieveList("verbs");
+alert("Retrieved verbList!");
+
 function loadActiveState()
 {
     var active = getLocalBoolean("active");
@@ -48,8 +51,6 @@ function quizFunction(tab)
         alert(answer + "\n\nYou answered: " + input + "\nCorrect Answer: " + entry.meaning);
     }
 };
-
-storeList("verbs", verbList);
 
 chrome.tabs.onCreated.addListener(quizFunction);
 chrome.tabs.onRemoved.addListener(quizFunction);

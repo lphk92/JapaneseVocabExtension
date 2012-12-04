@@ -14,5 +14,14 @@ function storeList(listName, list)
 
 function retrieveList(listName)
 {
-    return localStorage[listName];
+    var fullListName = "list_" + listName;
+    var stringifiedList = localStorage[fullListName];
+    if (stringifiedList == null)
+    {
+        alert("List \"" + listName + "\" does not exist");
+        return;
+    }
+
+    var list = JSON.parse(stringifiedList);
+    return list;
 };
