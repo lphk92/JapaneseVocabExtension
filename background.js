@@ -1,5 +1,4 @@
-var verbList = retrieveList("verbs");
-alert("Retrieved verbList!");
+var verbList = retrieveDefaultList("Verbs");
 
 function loadActiveState()
 {
@@ -19,7 +18,6 @@ function toggleActive(tab)
     localStorage["active"] = !currVal;
     loadActiveState();
 };
-
 
 function getLocalBoolean(key)
 {

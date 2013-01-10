@@ -3,14 +3,14 @@ import sys
 def createJavascriptList(fileName, delimeter, outputName):
     data = open(fileName, 'r')
     entries = data.readlines()
-    jscript = "var " + outputName + " = ["
+    jscript = "function generate" + outputName + "()\n{\n var list = ["
     for entry in entries:
         parts = entry.split(delimeter)
         if len(parts) == 3:
             jscript += "\n{\n\"visible\": true,\n\"kanji\":\"" + parts[0] + "\",\n\"reading\":\"" + parts[1] + "\",\n\"meaning\":\"" + parts[2].strip() + "\"\n},"
 
     jscript = jscript[0:len(jscript)-1]
-    jscript += "];"
+    jscript += "];\n\nreturn list;\n}"
 
     fout = open(outputName + ".js", 'w')
     fout.write(jscript)

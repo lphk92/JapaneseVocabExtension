@@ -3,6 +3,13 @@
         <title>Japanese Vocab Options</title>
     </head>
 
+    <style>
+    input
+    {
+        display: block;
+    }
+    </style>
+
     <body>
         <label>Show Reading in Question</label>
         <input type="checkbox" id="readingQuestion">
@@ -15,6 +22,19 @@
         <p>
         <button id="save">Save</button>
         </p>
+
+        <div id="listInput">
+            <form>
+                <label>Kanji:</label>
+                <input type="text" id="kanjiInput">
+
+                <label>Reading:</label>
+                <input type="text" id="readingInput">
+
+                <label>Meaning:</label>
+                <input type="text" id="meaningInput">
+            </form>
+        </div>
 
         <script type="text/javascript" src="options.js"></script>
     </body>

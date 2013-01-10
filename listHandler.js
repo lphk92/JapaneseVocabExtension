@@ -25,3 +25,13 @@ function retrieveList(listName)
     var list = JSON.parse(stringifiedList);
     return list;
 };
+
+function storeDefaultList(listName, list)
+{
+    storeList("default_"+listName, list);
+}
+
+function retrieveDefaultList(listName, list)
+{
+    retrieveList("default_"+listName, list);
+}
