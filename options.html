@@ -1,10 +1,41 @@
 <html>
+    <meta charset="UTF-8">
     <head>
         <title>Japanese Vocab Options</title>
     </head>
 
     <style>
-    input
+    #currentListDisplay
+    {
+        width: 300px;
+        height: 300px;
+        border: solid 1px;
+
+        float:left;
+        margin: 0px 10px 0px 10px;
+    }
+
+    #currentListDisplay table
+    {
+        width: 100%;
+    }
+
+    #currentListDisplay th, td
+    {
+        border: solid 1px gray;
+    }
+
+    #currentListDisplay tr:hover:not(.headerRow)
+    {
+       background-color: gray; 
+    }
+
+    #currentListInput
+    {
+        border: dotted 1px; 
+        float: left;
+    }
+    #currentListInput input[type=text]
     {
         display: block;
     }
@@ -23,7 +54,7 @@
         <button id="save">Save</button>
         </p>
 
-        <div id="listInput">
+        <div id="currentListInput">
             <form>
                 <label>Kanji:</label>
                 <input type="text" id="kanjiInput">
@@ -33,7 +64,28 @@
 
                 <label>Meaning:</label>
                 <input type="text" id="meaningInput">
+
+                <input type="button" id="addInput" value="Add">
+                
+                <input type="button" id="removeInput" value="Remove">
+
             </form>
+        </div>
+
+        <div id="currentListDisplay">
+            <table id="currentListTable">
+                <tr class="headerRow">
+                    <th>Kanji</th>
+                    <th>Reading</th>
+                    <th>Meaning</th>
+                </tr>
+
+                <tr>
+                    <td>笑う</td>
+                    <td>わらう</td>
+                    <td>to laugh</td>
+                </tr>
+            </table>            
         </div>
 
         <script type="text/javascript" src="options.js"></script>
