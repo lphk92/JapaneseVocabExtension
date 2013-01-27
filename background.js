@@ -4,7 +4,7 @@ function loadActiveState()
 {
     var active = getLocalBoolean("active");
 
-    var iconPath = active ? "icon-active.png" : "icon.png";
+    var iconPath = active ? "resources/icon-active.png" : "resources/icon.png";
     var iconTitle = active ? "Active" : "Inactive";
     iconTitle = "Japanese Vocab Quiz: " + iconTitle;
 

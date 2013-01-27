@@ -33,5 +33,5 @@ function storeDefaultList(listName, list)
 
 function retrieveDefaultList(listName, list)
 {
-    retrieveList("default_"+listName, list);
+    return retrieveList("default_"+listName, list);
 }
