@@ -7,12 +7,14 @@
     <style>
     #currentListDisplay
     {
-        width: 300px;
+        width: 800px;
         height: 300px;
         border: solid 1px;
 
         float:left;
         margin: 0px 10px 0px 10px;
+
+        overflow-y scroll;
     }
 
     #currentListDisplay table
@@ -20,12 +22,12 @@
         width: 100%;
     }
 
-    #currentListDisplay th, td
+    th, td
     {
         border: solid 1px gray;
     }
 
-    #currentListDisplay tr:hover:not(.headerRow)
+    tr:hover:not(.headerRow)
     {
        background-color: gray; 
     }
@@ -38,6 +40,19 @@
     #currentListInput input[type=text]
     {
         display: block;
+    }
+
+    #allListsDisplay
+    {
+        width: 300px;
+        height: 100px;
+        border: solid 1px;
+        padding: 2px;
+        margin: 0px 0px 10px 0px;
+    }
+    #allListsTable
+    {
+        width:100%;
     }
     </style>
 
@@ -53,6 +68,12 @@
         <p>
         <button id="save">Save</button>
         </p>
+
+        <div id="allListsDisplay">
+            <table id="allListsTable"></table>
+        </div>
+
+        </div>
 
         <div id="currentListInput">
             <form>
@@ -74,20 +95,10 @@
 
         <div id="currentListDisplay">
             <table id="currentListTable">
-                <tr class="headerRow">
-                    <th>Kanji</th>
-                    <th>Reading</th>
-                    <th>Meaning</th>
-                </tr>
-
-                <tr>
-                    <td>笑う</td>
-                    <td>わらう</td>
-                    <td>to laugh</td>
-                </tr>
             </table>            
         </div>
 
-        <script type="text/javascript" src="options.js"></script>
+        <script type="text/javascript" src="scripts/listHandler.js"></script>
+        <script type="text/javascript" src="scripts/options.js"></script>
     </body>
 </html>

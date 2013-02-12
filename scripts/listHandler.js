@@ -35,3 +35,20 @@ function retrieveDefaultList(listName, list)
 {
     return retrieveList("default_"+listName, list);
 }
+
+function getListNames()
+{
+    var listNames = new Array();
+    var indexCounter = 0;
+    for (var i = 0; i < localStorage.length ; i++)
+    {
+        var key = localStorage.key(i); 
+        if (key.indexOf("list_") == 0)
+        {
+            listNames[indexCounter] = key.replace("list_", "");
+            indexCounter++;
+        }
+    }
+
+    return listNames;
+}
