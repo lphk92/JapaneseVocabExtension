@@ -1,8 +1,10 @@
-var currentVersion = "1.3";
+var currentVersion = "1.4";
+alert("Performing version check...");
 
 if (localStorage["version"] != currentVersion)
 {
     // Load up verb list
+    alert("Mismatch!");
     var verbList = generateVerbList();
     storeDefaultList("Verbs", verbList);
     localStorage["version"] = currentVersion;
@@ -10,5 +12,5 @@ if (localStorage["version"] != currentVersion)
 }
 else
 {
-    //alert("Version check passed");
+    alert("Version check passed");
 }

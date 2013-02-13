@@ -4,10 +4,12 @@ def createJavascriptList(fileName, delimeter, outputName):
     data = open(fileName, 'r')
     entries = data.readlines()
     jscript = "function generate" + outputName + "()\n{\n var list = ["
+    index = 0
     for entry in entries:
         parts = entry.split(delimeter)
         if len(parts) == 3:
-            jscript += "\n{\n\"visible\": true,\n\"kanji\":\"" + parts[0] + "\",\n\"reading\":\"" + parts[1] + "\",\n\"meaning\":\"" + parts[2].strip() + "\"\n},"
+            jscript += "\n{\n\"index\": " + str(index) + ",\n\"visible\": true,\n\"kanji\":\"" + parts[0] + "\",\n\"reading\":\"" + parts[1] + "\",\n\"meaning\":\"" + parts[2].strip() + "\"\n},"
+            index += 1
 
     jscript = jscript[0:len(jscript)-1]
     jscript += "];\n\nreturn list;\n}"

@@ -10,7 +10,7 @@ function storeList(listName, list)
     var stringifiedList = JSON.stringify(list);
     localStorage[fullListName] = stringifiedList;
     alert("List \"" + listName + "\" successfully stored.");
-};
+}
 
 function retrieveList(listName)
 {
@@ -24,7 +24,7 @@ function retrieveList(listName)
 
     var list = JSON.parse(stringifiedList);
     return list;
-};
+}
 
 function storeDefaultList(listName, list)
 {

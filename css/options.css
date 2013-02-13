@@ -9,10 +9,10 @@ table
     border-spacing: 0px;
 }
 
-tr:nth-of-type(odd):not(.header)
+/*tr:nth-of-type(odd):not(.header)
 {
     background-color: #FBB9A7;
-}
+}*/
 
 tr:hover:not(.header), tr:hover .selected
 {
@@ -21,7 +21,7 @@ tr:hover:not(.header), tr:hover .selected
 
 tr .selected
 {
-    background-color: #33CBF5;
+    background-color: #94F86D;
 }
 
 #allListsDisplay
@@ -29,8 +29,37 @@ tr .selected
     width: 300px;
     height: 100px;
     border: solid 1px;
+    float: left;
     padding: 2px;
     margin: 0px 0px 10px 0px;
+}
+
+#addListContent
+{
+    float: left;
+    border: solid 1px;
+    padding: 2px;
+    margin: 0 0 0 10px;
+}
+
+#addEntryContent
+{
+    width: 300px;
+    border: solid 1px;
+    float: left;
+    clear: both;
+    margin: 0 0 10px 0;
+    padding: 2px;
+}
+
+#addEntryContent input
+{
+    display: block;
+}
+
+#addListContent input
+{
+    display: block;
 }
 
 #currentListDisplay
@@ -38,11 +67,12 @@ tr .selected
     width: 800px;
     height: 300px;
     border: solid 1px;
-    float:left;
+    /*Note: clear makes it so that the div starts on it's own line (relative to the other divs)*/
+    clear: both;
 
     overflow-y: scroll;
+    resize: both;
 }
-
 
 #allListsTable
 {
