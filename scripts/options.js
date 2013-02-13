@@ -5,8 +5,6 @@ function saveOptions()
 
     localStorage["showReadingQuestion"] = readingQuestion.checked;
     localStorage["showReadingAnswer"] = readingAnswer.checked;
-
-    //alert ("Options saved");
 }
 
 function loadOptions()
@@ -19,31 +17,42 @@ function loadOptions()
 
     readingQuestion.checked = showReadingQuestion == "true";
     readingAnswer.checked = showReadingAnswer == "true";
+}
 
-    //alert("Options loaded");
+function loadListNames()
+{
+    var lists = getListNames();
+    var tableString = "<tr class=\"header\"><th>Lists</th></tr>";
+    for (var i = 0 ; i < lists.length ; i++)
+    {
+       tableString += "<tr><td>" + lists[i] + "</td></tr>" + "\n"; 
+    }
+    document.getElementById("allListsTable").innerHTML = tableString;
 }
 
 function loadList(list)
 {
-    var editTable = document.getElementById("currentListTable");
-    editTable.innerHTML = "<tr class=\"headerRow\"><th>Kanji</th><th>Reading</th><th>Meaning</th></tr><tbody>";
+    //Note: By first writing all of the new HTML into a string, and then only setting the innerHTML
+    //      element once, it takes much less time to load a list
+    tableString = "<tr class=\"header\"><th>Kanji</th><th>Reading</th><th>Meaning</th></tr>";
     for (var i = 0 ; i < list.length ; i++)
     {
-        var row = "<tr><td>" + list[i]["kanji"] + "</td><td>" + list[i]["reading"] + "</td><td>" + list[i]["meaning"] + "</td></tr>\n";
-        editTable.innerHTML += row;
+        tableString += "<tr><td><div contenteditable>" + list[i]["kanji"] + "</div></td><td><div contenteditable>" + list[i]["reading"] + "</div></td><td><div contenteditable>" + list[i]["meaning"] + "</div></td></tr>\n";
     }
-    editTable.innerHTML += "</tbody>";
+    document.getElementById("currentListTable").innerHTML = tableString;
 }
 
+loadListNames();
 document.addEventListener('DOMContentLoaded', loadOptions);
-document.querySelector('#save').addEventListener('click', saveOptions);
 
-var lists = getListNames();
-var allListsTable = document.getElementById("allListsTable");
-for (var i = 0 ; i < lists.length ; i++)
-{
-   allListsTable.innerHTML += "<tr><td>" + lists[i] + "</td></tr>" + "\n"; 
-}
-alert("list names loaded");
+$("#save").click(function(){
+    saveOptions();
+});
 
-loadList(retrieveList("default_Verbs"));
+$("#allListsTable td").click(function(){ 
+    var listName = this.innerHTML;
+    loadList(retrieveList(listName));
+    $("#allListsTable td").removeClass("selected");
+    $(this).addClass("selected");
+});
+

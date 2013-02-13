@@ -2,59 +2,9 @@
     <meta charset="UTF-8">
     <head>
         <title>Japanese Vocab Options</title>
+        <script src="libraries/jquery-1.9.1.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/options.css">
     </head>
-
-    <style>
-    #currentListDisplay
-    {
-        width: 800px;
-        height: 300px;
-        border: solid 1px;
-
-        float:left;
-        margin: 0px 10px 0px 10px;
-
-        overflow-y scroll;
-    }
-
-    #currentListDisplay table
-    {
-        width: 100%;
-    }
-
-    th, td
-    {
-        border: solid 1px gray;
-    }
-
-    tr:hover:not(.headerRow)
-    {
-       background-color: gray; 
-    }
-
-    #currentListInput
-    {
-        border: dotted 1px; 
-        float: left;
-    }
-    #currentListInput input[type=text]
-    {
-        display: block;
-    }
-
-    #allListsDisplay
-    {
-        width: 300px;
-        height: 100px;
-        border: solid 1px;
-        padding: 2px;
-        margin: 0px 0px 10px 0px;
-    }
-    #allListsTable
-    {
-        width:100%;
-    }
-    </style>
 
     <body>
         <label>Show Reading in Question</label>
@@ -73,24 +23,6 @@
             <table id="allListsTable"></table>
         </div>
 
-        </div>
-
-        <div id="currentListInput">
-            <form>
-                <label>Kanji:</label>
-                <input type="text" id="kanjiInput">
-
-                <label>Reading:</label>
-                <input type="text" id="readingInput">
-
-                <label>Meaning:</label>
-                <input type="text" id="meaningInput">
-
-                <input type="button" id="addInput" value="Add">
-                
-                <input type="button" id="removeInput" value="Remove">
-
-            </form>
         </div>
 
         <div id="currentListDisplay">
