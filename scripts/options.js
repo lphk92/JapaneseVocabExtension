@@ -1,5 +1,3 @@
-var currentList;
-
 function saveOptions()
 {
     var readingQuestion = document.getElementById("readingQuestion");
@@ -23,11 +21,22 @@ function loadOptions()
 
 function loadListNames()
 {
-    var lists = getListNames();
+    // First, clear the table displaying current list contents, since this may change
+    document.getElementById("currentListTable").innerHTML = "";
+
+    var listNames = getListNames();
     var tableString = "<tr class=\"header\"><th>Lists</th></tr>";
-    for (var i = 0 ; i < lists.length ; i++)
+    for (var i = 0 ; i < listNames.length ; i++)
     {
-       tableString += "<tr><td>" + lists[i] + "</td></tr>" + "\n"; 
+        if (listNames[i] == currentListName())
+        {
+            tableString += "<tr><td class=\"selected\">" + listNames[i] + "</td></tr>" + "\n"; 
+            loadList(retrieveCurrentList());
+        }
+        else
+        {
+            tableString += "<tr><td>" + listNames[i] + "</td></tr>" + "\n"; 
+        }
     }
     document.getElementById("allListsTable").innerHTML = tableString;
 
@@ -37,6 +46,8 @@ function loadListNames()
         loadList(retrieveList(listName));
         $("#allListsTable td").removeClass("selected");
         $(this).addClass("selected");
+
+        setCurrentList(listName);
     });
 }
 
@@ -49,11 +60,23 @@ function loadList(vocabList)
     tableString = "<tr class=\"header\"><th>Kanji</th><th>Reading</th><th>Meaning</th></tr>";
     for (var i = 0 ; i < list.length ; i++)
     {
-        tableString += "<tr><td><div contenteditable>" + list[i]["kanji"] + "</div></td>"
-        tableString += "<td><div contenteditable>" + list[i]["reading"] + "</div></td>"
-        tableString += "<td><div contenteditable>" + list[i]["meaning"] + "</div></td></tr>\n";
+        tableString += "<tr><td>" + list[i]["kanji"] + "</td>"
+        tableString += "<td>" + list[i]["reading"] + "</td>"
+        tableString += "<td>" + list[i]["meaning"] + "</td></tr>\n";
     }
     document.getElementById("currentListTable").innerHTML = tableString;
+
+    // Add the selection listener to each of the entries 
+    $("#currentListTable tr").click(function(){ 
+        if ($(this).hasClass("selected"))
+        {
+            $(this).removeClass("selected");
+        }
+        else
+        {
+            $(this).addClass("selected");
+        }
+    });
 }
 
 function addEntry()
@@ -63,12 +86,17 @@ function addEntry()
     var meaning = $("#meaning").val();
 
     var entry = {"kanji": kanji, "reading": reading, "meaning": meaning, "visible": true};
-    currentList.push(entry);
+    currentList.list.push(entry);
+    storeList(currentList.name, currentList);
 
-    var rowString = "<tr><td><div contenteditable>" + kanji + "</div></td>"
-    rowString += "<td><div contenteditable>" + reading + "</div></td>"
-    rowString += "<td><div contenteditable>" + meaning + "</div></td></tr>\n";
+    var rowString = "<tr><td>" + kanji + "</td>"
+    rowString += "<td>" + reading + "</td>"
+    rowString += "<td>" + meaning + "</td></tr>\n";
     document.getElementById("currentListTable").innerHTML += rowString;
+
+    $("#kanji").val("");
+    $("#reading").val("");
+    $("#meaning").val("");
 }
 
 loadListNames();
@@ -84,7 +112,27 @@ $("#addEntry").click(function(){
 
 $("#addList").click(function(){
     var listName = $("#newListName").val();
-    var list = {"name":listName, "list":[]};
-    storeList(listName, list);
-    loadListNames();
+    if (listName == "" || listName == null)
+    {
+        alert("Please enter a name before creating a new list.");
+    }
+    else
+    {
+        var list = {"name":listName, "list":[]};
+        storeList(listName, list);
+        loadListNames();
+    }
+});
+
+$("#deleteList").click(function(){
+    var conf = confirm("Are you sure you want to delete the list \"" + currentListName() + "\"? You will not be able to undo this operation.");
+    if (conf)
+    {
+        deleteList(currentListName());
+        loadListNames();
+    }
+});
+
+$("#deleteEntries").click(function(){
+    //TODO: Write function for deleting the selected entries 
 });

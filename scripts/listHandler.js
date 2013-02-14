@@ -1,15 +1,8 @@
 function storeList(listName, list)
 {
     var fullListName = "list_" + listName;
-    if (localStorage[fullListName] != null)
-    {
-        alert("List \"" + listName + "\" already exists");
-        return;
-    }
-
     var stringifiedList = JSON.stringify(list);
     localStorage[fullListName] = stringifiedList;
-    alert("List \"" + listName + "\" successfully stored.");
 }
 
 function retrieveList(listName)
@@ -26,14 +19,33 @@ function retrieveList(listName)
     return list;
 }
 
-function storeDefaultList(listName, list)
+function deleteList(listName)
 {
-    storeList("default_"+listName, list);
+    var fullListName = "list_" + listName;
+    for (var i = 0; i < localStorage.length ; i++)
+    {
+        var key = localStorage.key(i); 
+        if (key == fullListName)
+        {
+            localStorage.removeItem(key);
+            return;
+        }
+    }
 }
 
-function retrieveDefaultList(listName, list)
+function retrieveCurrentList()
 {
-    return retrieveList("default_"+listName, list);
+    return retrieveList(localStorage["currentList"]);
+}
+
+function currentListName() 
+{
+    return localStorage["currentList"]; 
+}
+
+function setCurrentList(listName)
+{
+    localStorage["currentList"] = listName;
 }
 
 function getListNames()

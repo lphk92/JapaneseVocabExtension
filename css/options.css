@@ -9,20 +9,32 @@ table
     border-spacing: 0px;
 }
 
-/*tr:nth-of-type(odd):not(.header)
-{
-    background-color: #FBB9A7;
-}*/
-
-tr:hover:not(.header), tr:hover .selected
+tr:hover:not(.header)
 {
     background-color: #6D94F8; 
 }
 
-tr .selected
+input[type="text"]
+{
+    display: block;
+}
+
+#allListsDisplay tr .selected
 {
     background-color: #94F86D;
 }
+
+#currentListDisplay tr.selected
+{
+    background-color: #FBB9A7;
+}
+
+/*
+Currently, this breaks the hover highlighting
+#currentListDisplay tr:nth-of-type(odd):not(.header)
+{
+    background-color: #C4C4C4;
+}*/
 
 #allListsDisplay
 {
@@ -40,6 +52,7 @@ tr .selected
     border: solid 1px;
     padding: 2px;
     margin: 0 0 0 10px;
+    clear: right;
 }
 
 #addEntryContent
@@ -47,19 +60,9 @@ tr .selected
     width: 300px;
     border: solid 1px;
     float: left;
-    clear: both;
+    clear: left;
     margin: 0 0 10px 0;
     padding: 2px;
-}
-
-#addEntryContent input
-{
-    display: block;
-}
-
-#addListContent input
-{
-    display: block;
 }
 
 #currentListDisplay
@@ -67,8 +70,9 @@ tr .selected
     width: 800px;
     height: 300px;
     border: solid 1px;
-    /*Note: clear makes it so that the div starts on it's own line (relative to the other divs)*/
-    clear: both;
+    margin: 0 0 0 10px;
+    padding: 2px;
+    float: left;
 
     overflow-y: scroll;
     resize: both;
@@ -79,7 +83,7 @@ tr .selected
     width:100%;
 }
 
-#currentListDisplay table
+#currentListTable
 {
     width: 100%;
 }

@@ -1,5 +1,3 @@
-var verbList = retrieveDefaultList("Verbs");
-
 function loadActiveState()
 {
     var active = getLocalBoolean("active");
@@ -26,8 +24,8 @@ function getLocalBoolean(key)
 
 function getRandomEntry()
 {
-    var num = Math.floor(Math.random() * verbList.length);
-    return verbList[num];
+    var num = Math.floor(Math.random() * retrieveCurrentList().list.length);
+    return retrieveCurrentList().list[num];
 };
 
 function quizFunction(tab)
