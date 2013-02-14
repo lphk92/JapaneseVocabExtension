@@ -53,21 +53,20 @@ function loadListNames()
 
 function loadList(vocabList)
 {
-    currentList = vocabList;
     var list = vocabList.list;
     //Note: By first writing all of the new HTML into a string, and then only setting the innerHTML
     //      element once, it takes much less time to load a list
     tableString = "<tr class=\"header\"><th>Kanji</th><th>Reading</th><th>Meaning</th></tr>";
     for (var i = 0 ; i < list.length ; i++)
     {
-        tableString += "<tr><td>" + list[i]["kanji"] + "</td>"
+        tableString += "<tr data-index=" + list[i]["index"] + "><td>" + list[i]["kanji"] + "</td>"
         tableString += "<td>" + list[i]["reading"] + "</td>"
         tableString += "<td>" + list[i]["meaning"] + "</td></tr>\n";
     }
     document.getElementById("currentListTable").innerHTML = tableString;
 
     // Add the selection listener to each of the entries 
-    $("#currentListTable tr").click(function(){ 
+    $("#currentListTable tr:not(.header)").click(function(){ 
         if ($(this).hasClass("selected"))
         {
             $(this).removeClass("selected");
@@ -81,22 +80,35 @@ function loadList(vocabList)
 
 function addEntry()
 {
+    var currentList = retrieveCurrentList();
+
+    var index = currentList.list.length == 0 ? 0 : currentList.list[currentList.list.length - 1]["index"] + 1;
     var kanji = $("#kanji").val();
     var reading = $("#reading").val();
     var meaning = $("#meaning").val();
 
-    var entry = {"kanji": kanji, "reading": reading, "meaning": meaning, "visible": true};
+    var entry = {"index": index, "kanji": kanji, "reading": reading, "meaning": meaning, "visible": true};
     currentList.list.push(entry);
     storeList(currentList.name, currentList);
 
-    var rowString = "<tr><td>" + kanji + "</td>"
-    rowString += "<td>" + reading + "</td>"
-    rowString += "<td>" + meaning + "</td></tr>\n";
-    document.getElementById("currentListTable").innerHTML += rowString;
+    loadList(currentList);
 
     $("#kanji").val("");
     $("#reading").val("");
     $("#meaning").val("");
+}
+
+function removeEntryFromList(vocabList, index)
+{
+    for (var i = 0 ; i < vocabList.list.length ; i++)
+    {
+        if (vocabList.list[i]["index"] == index)
+        {
+            vocabList.list.splice(i, 1);
+            storeList(vocabList.name, vocabList);
+            return;
+        }
+    }
 }
 
 loadListNames();
@@ -134,5 +146,15 @@ $("#deleteList").click(function(){
 });
 
 $("#deleteEntries").click(function(){
-    //TODO: Write function for deleting the selected entries 
+    var conf = confirm("Are you sure you want to delete the selected entries? You will not be able to undo this operation.");
+    if (conf)
+    {
+        $("#currentListTable .selected").each(function(){
+            var index = $(this).attr("data-index");
+            var currentList = retrieveCurrentList();
+            removeEntryFromList(currentList, index);
+        });
+    }
+
+    loadList(retrieveCurrentList());
 });
