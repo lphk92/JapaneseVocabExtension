@@ -114,6 +114,35 @@ function removeEntryFromList(vocabList, index)
 loadListNames();
 document.addEventListener('DOMContentLoaded', loadOptions);
 
+var reader = new FileReader();
+function handleFileSelect(evt) 
+{
+    var file = evt.target.files[0];
+
+    reader = new FileReader();
+
+    reader.onload = function(e) {
+            alert("begin handle");
+            var vocabList = csvToVocabList(e.target.result);
+            aleret("mid handler");
+            var listString = JSON.stringify(vocabList);
+            alert(listString);
+        };
+    alert("File select handled");
+}
+
+function readFileAsText(file)
+{
+    var reader = new FileReader();
+    reader.readAsText(file);
+    reader.onload = function(event) {
+        var listString = JSON.stringify(csvToVocabList(event.target.result));
+        localStorage["temp"] = listString;
+    };
+}
+
+document.getElementById('importFile').addEventListener('change', function() { readFileAsText(this.files[0]); }, false);
+
 $("#save").click(function(){
     saveOptions();
 });
@@ -131,6 +160,14 @@ $("#addList").click(function(){
     else
     {
         var list = {"name":listName, "list":[]};
+        if (localStorage["temp"] != null && localStorage["temp"] != "")
+        {
+            var list = JSON.parse(localStorage["temp"]);
+        }
+
+        $("#newListName").val("");
+        $("#importFile").val("");
+
         storeList(listName, list);
         loadListNames();
     }
