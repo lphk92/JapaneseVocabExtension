@@ -1,44 +1,45 @@
-bad,わるい
-bad-tasting,まずい
-big,おおきい
-bright, cheerful,あかるい
-busy, occupied,いそがしい
-cheap, inexpensive,やすい
-cold (touch),つめたい
-cold (weather, air),さむい
-cool,すずしい
-cute,かわいい
-dangerous, uncertain,あぶない
-dark,くらい
-delicious, good,おいしい
-difficult,むずかしい
-early,はやい
-embarrassing,はずかしい
-far,とおい
-fun, enjoyable,たのしい
-gentle, kind,やさしい
-good,いい
-happy, glad,うれしい
-heavy,おもい
-hot (touch),あつい
-interesting, amusing,おもしろい
-lightweight,かるい
-long,ながい
-low, short,ひくい
-near,ちかい
-new,あたらしい
-noisy,うるさい
-old,ふるい
-sad,かなしい
-scary,こわい
-short, brief,みじかい
-slow, late,おそい
-small,ちいさい
-strict,きびしい
-strong,つよい
-tall, expensive,たかい
-thick, bulky,あつい
-uninteresting, boring,つまらない
-warm,あたたかい
-weak,よわい
-young,わかい
+Meaning,"Second Meaning",Reading,Kanji
+bad,,わるい,
+bad-tasting,,まずい,
+big,,おおきい,
+bright,cheerful,あかるい,
+busy,occupied,いそがしい,
+cheap,inexpensive,やすい,
+"cold (touch)",,つめたい,
+"cold (weather",air),さむい,
+cool,,すずしい,
+cute,,かわいい,
+dangerous,uncertain,あぶない,
+dark,,くらい,
+delicious,good,おいしい,
+difficult,,むずかしい,
+early,,はやい,
+embarrassing,,はずかしい,
+far,,とおい,
+fun,enjoyable,たのしい,
+gentle,kind,やさしい,
+good,,いい,
+happy,glad,うれしい,
+heavy,,おもい,
+"hot (touch)",,あつい,
+interesting,amusing,おもしろい,
+lightweight,,かるい,
+long,,ながい,
+low,short,ひくい,
+near,,ちかい,
+new,,あたらしい,
+noisy,,うるさい,
+old,,ふるい,
+sad,,かなしい,
+scary,,こわい,
+short,brief,みじかい,
+slow,late,おそい,
+small,,ちいさい,
+strict,,きびしい,
+strong,,つよい,
+tall,expensive,たかい,
+thick,bulky,あつい,
+uninteresting,boring,つまらない,
+warm,,あたたかい,
+weak,,よわい,
+young,,わかい,

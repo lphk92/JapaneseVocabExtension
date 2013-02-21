@@ -1,11 +1,22 @@
-var currentVersion = "1.4";
+var currentVersion = "2.0";
 //alert("Performing version check...");
 
-if (localStorage["version"] != currentVersion)
+var version = localStorage["version"];
+
+
+if (version != currentVersion)
 {
+    if (version[0] == "1")
+    {
+        // Purge to remove depracated "default" lists from localStorage.
+        purgeLists();
+    }
+
     // Load up verb list
     var verbList = generateVerbList();
-    storeDefaultList("Verbs", verbList);
+    storeList("Verbs", verbList);
+
+    setCurrentList(getListNames()[0]);
     localStorage["version"] = currentVersion;
 }
 else

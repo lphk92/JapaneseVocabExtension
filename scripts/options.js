@@ -163,6 +163,7 @@ $("#addList").click(function(){
         if (localStorage["temp"] != null && localStorage["temp"] != "")
         {
             var list = JSON.parse(localStorage["temp"]);
+            localStorage["temp"] == "";
         }
 
         $("#newListName").val("");
@@ -174,11 +175,19 @@ $("#addList").click(function(){
 });
 
 $("#deleteList").click(function(){
-    var conf = confirm("Are you sure you want to delete the list \"" + currentListName() + "\"? You will not be able to undo this operation.");
-    if (conf)
+    if (getListNames().length == 1)
     {
-        deleteList(currentListName());
-        loadListNames();
+        alert("You must always have at least one list");
+    }
+    else
+    {
+        var conf = confirm("Are you sure you want to delete the list \"" + currentListName() + "\"? You will not be able to undo this operation.");
+        if (conf)
+        {
+            deleteList(currentListName());
+            setCurrentList(getListNames()[0]);
+            loadListNames();
+        }
     }
 });
 

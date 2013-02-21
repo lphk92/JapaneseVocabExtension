@@ -33,6 +33,15 @@ function deleteList(listName)
     }
 }
 
+function purgeLists()
+{
+    var listNames = getListNames();
+    for (var i = 0 ; i < listNames.length ; i++)
+    {
+        deleteList(listNames[i]);
+    }
+}
+
 function retrieveCurrentList()
 {
     return retrieveList(localStorage["currentList"]);
