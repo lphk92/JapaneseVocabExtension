@@ -50,6 +50,6 @@ function quizFunction(tab)
 
 chrome.tabs.onCreated.addListener(quizFunction);
 chrome.tabs.onRemoved.addListener(quizFunction);
-chrome.browserAction.onClicked.addListener(toggleActive);
+//chrome.browserAction.onClicked.addListener(toggleActive);
 
 loadActiveState();
