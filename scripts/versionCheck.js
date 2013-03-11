@@ -16,7 +16,12 @@ else if (version != currentVersion)
     if (version[0] == "1")
     {
         // Purge to remove depracated "default" lists from localStorage.
-        purgeLists();
+        // This is safe since custom lists weren't introduced until after version 1
+        var listNames = getListNames();
+        for (var i = 0 ; i < listNames.length ; i++)
+        {
+            deleteList(listNames[i]);
+        }
     }
 
     // Load up verb list

@@ -1,28 +1,20 @@
 function saveOptions()
 {
-    var readingQuestion = document.getElementById("readingQuestion");
-    var readingAnswer = document.getElementById("readingAnswer");
-
-    localStorage["showReadingQuestion"] = readingQuestion.checked;
-    localStorage["showReadingAnswer"] = readingAnswer.checked;
+    localStorage["showReadingQuestion"] = $("#readingQuestion").is(":checked");
+    localStorage["showReadingAnswer"] = $("#readingAnswer").is(":checked");
+    alert("Options Saved!");
 }
 
 function loadOptions()
 {
-    var showReadingQuestion = localStorage["showReadingQuestion"];
-    var showReadingAnswer = localStorage["showReadingAnswer"];
-
-    var readingQuestion = document.getElementById("readingQuestion");
-    var readingAnswer = document.getElementById("readingAnswer");
-
-    readingQuestion.checked = showReadingQuestion == "true";
-    readingAnswer.checked = showReadingAnswer == "true";
+    $("#readingQuestion").prop('checked', localStorage["showReadingQuestion"] == "true");
+    $("#readingAnswer").prop('checked', localStorage["showReadingAnswer"] == "true");
 }
 
 function loadListNames()
 {
     // First, clear the table displaying current list contents, since this may change
-    document.getElementById("currentListTable").innerHTML = "";
+    $("#currentListTable").html("");
 
     var listNames = getListNames();
     var tableString = "<tr class=\"header\"><th>Lists</th></tr>";
@@ -38,7 +30,7 @@ function loadListNames()
             tableString += "<tr><td>" + listNames[i] + "</td></tr>" + "\n"; 
         }
     }
-    document.getElementById("allListsTable").innerHTML = tableString;
+    $("#allListsTable").html(tableString);
 
     // Add the selection listener to each of the lists
     $("#allListsTable td").click(function(){ 
@@ -63,7 +55,7 @@ function loadList(vocabList)
         tableString += "<td>" + list[i]["reading"] + "</td>"
         tableString += "<td>" + list[i]["meaning"] + "</td></tr>\n";
     }
-    document.getElementById("currentListTable").innerHTML = tableString;
+    $("#currentListTable").html(tableString);
 
     // Add the selection listener to each of the entries 
     $("#currentListTable tr:not(.header)").click(function(){ 
@@ -113,23 +105,6 @@ function removeEntryFromList(vocabList, index)
 
 loadListNames();
 document.addEventListener('DOMContentLoaded', loadOptions);
-
-var reader = new FileReader();
-function handleFileSelect(evt) 
-{
-    var file = evt.target.files[0];
-
-    reader = new FileReader();
-
-    reader.onload = function(e) {
-            alert("begin handle");
-            var vocabList = csvToVocabList(e.target.result);
-            aleret("mid handler");
-            var listString = JSON.stringify(vocabList);
-            alert(listString);
-        };
-    alert("File select handled");
-}
 
 function readFileAsText(file)
 {

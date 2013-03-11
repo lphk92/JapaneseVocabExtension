@@ -6,7 +6,7 @@ function loadListNames()
         for (var i = 0 ; i < listNames.length ; i++)
         {
             var newItem = document.createElement("div");
-            newItem.innerHTML = listNames[i];
+            $(newItem).html(listNames[i]);
             $(newItem).addClass("list-name");
 
             if (listNames[i] == currentListName())
@@ -22,7 +22,7 @@ function loadListNames()
                 setCurrentList(listName);
             });
 
-            document.getElementById("lists").appendChild(newItem);
+            $("#lists").append(newItem);
         }
     }
     catch(e)
@@ -34,15 +34,15 @@ function loadListNames()
 function updateActivateButton()
 {
     var currVal = localStorage["active"] == "true";
-    document.getElementById("activate").innerHTML = currVal ? "Deactivate" : "Activate";
+    $("#activate").html(currVal ? "Deactivate" : "Activate");
     $("#activate").addClass( currVal ? "off" : "on");
     $("#activate").removeClass( currVal ? "on" : "off");
 }
 
 $("#activate").click(function(){
-    var currVal = localStorage["active"] == "true";
-    localStorage["active"] = !currVal; 
+    localStorage["active"] = !(localStorage["active"] == "true"); 
     updateActivateButton();
+    updateIcon();
 });
 
 $("#options").click(function(){

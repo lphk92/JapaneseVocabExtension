@@ -1,27 +1,3 @@
-function loadActiveState()
-{
-    var active = getLocalBoolean("active");
-
-    var iconPath = active ? "resources/icon-active.png" : "resources/icon.png";
-    var iconTitle = active ? "Active" : "Inactive";
-    iconTitle = "Japanese Vocab Quiz: " + iconTitle;
-
-    chrome.browserAction.setIcon({path: iconPath});
-    chrome.browserAction.setTitle({title: iconTitle});
-};
-
-function toggleActive(tab)
-{
-    var currVal = getLocalBoolean("active");
-    localStorage["active"] = !currVal;
-    loadActiveState();
-};
-
-function getLocalBoolean(key)
-{
-    return localStorage[key] == "true" ? true : false;
-};
-
 function getRandomEntry()
 {
     var num = Math.floor(Math.random() * retrieveCurrentList().list.length);
@@ -30,26 +6,29 @@ function getRandomEntry()
 
 function quizFunction(tab)
 {
-    if (getLocalBoolean("active") == true)
+    if (localStorage["active"] == "true")
     {
-        var entry = getRandomEntry();
-        var kanji = entry.kanji;
-        var reading = " (" + entry.reading + ")";
-
-        var showReadingQuestion = getLocalBoolean("showReadingQuestion");
-        var showReadingAnswer = getLocalBoolean("showReadingAnswer");
+        entry = getRandomEntry();
+    
+        var showReadingQuestion = localStorage["showReadingQuestion"] == "true";
+        var showReadingAnswer = localStorage["showReadingAnswer"] == "true";
         
-        var question = showReadingQuestion ? kanji + reading : kanji;
-        var answer = showReadingAnswer ? kanji + reading : kanji;
+        if (entry.kanji == "" || entry.kanji == null)
+        {
+            var question = entry.reading;
+            var answer = entry.reading;
+        }
+        else
+        {      
+            var question = showReadingQuestion ? entry.kanji + " (" + entry.reading + ")" : entry.kanji;
+            var answer = showReadingAnswer ? entry.kanji + " (" + entry.reading + ")" : entry.kanji;            
+        }
 
         var input = prompt(question);
-
         alert(answer + "\n\nYou answered: " + input + "\nCorrect Answer: " + entry.meaning);
     }
 };
 
 chrome.tabs.onCreated.addListener(quizFunction);
 chrome.tabs.onRemoved.addListener(quizFunction);
-//chrome.browserAction.onClicked.addListener(toggleActive);
-
-loadActiveState();
+updateIcon();
