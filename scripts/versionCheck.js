@@ -1,4 +1,4 @@
-var currentVersion = "2.0";
+var currentVersion = "2.0.4";
 
 var version = localStorage["version"];
 
