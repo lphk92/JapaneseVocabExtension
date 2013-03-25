@@ -1,50 +1,69 @@
-td
+div.section
 {
-    /*border: solid 1px gray;*/
-    padding: 2px;
+    padding: 10px;
+    margin: 0px 10px 10px 0px;
+    border: 3px solid black; 
+    border-radius: 5px;
+    float: left;
 }
 
-table
+div.title
 {
-    border-spacing: 0px;
+    width: 100%;
+    font-size: 24px;
+    font-weight: bold;
+    display: block;
 }
 
-tr:hover:not(.header)
+div.content
 {
-    background-color: #6D94F8; 
+    padding-top: 5px;
+    border: 3px solid green;
+    border-radius: 5px;
 }
 
+/* This is a trick to make the content div extend to include the floating divs */
+br.anchor
+{
+    clear: both;
+}
+
+div#lists
+{
+    height: 220px;
+    clear: right;
+}
+
+
+div#listNames .selected
+{
+    background-color: #94F86D;
+}
+div#listNames
+{
+    border: solid 1px;
+    width: 300px;
+    height: 150px;
+    overflow-y: scroll;
+}
+div#listInfo
+{
+    float: left;
+}
+div.list-name
+{
+    display: block;
+    padding: 3px;
+}
+div.list-name:hover
+{
+    background-color: #6D94F8;
+}
 input[type="text"], input[type="file"]
 {
     display: block;
 }
 
-#allListsDisplay tr .selected
-{
-    background-color: #94F86D;
-}
-
-#currentListDisplay tr.selected
-{
-    background-color: #FBB9A7;
-}
-
-/*
-Currently, this breaks the hover highlighting
-#currentListDisplay tr:nth-of-type(odd):not(.header)
-{
-    background-color: #C4C4C4;
-}*/
-
-#allListsDisplay
-{
-    width: 300px;
-    height: 100px;
-    border: solid 1px;
-    float: left;
-    padding: 2px;
-    margin: 0px 0px 10px 0px;
-}
 
 #addListContent
 {
@@ -52,7 +71,6 @@ Currently, this breaks the hover highlighting
     border: solid 1px;
     padding: 2px;
     margin: 0 0 10px 10px;
-    clear: right;
 }
 
 #addEntryContent
@@ -60,11 +78,13 @@ Currently, this breaks the hover highlighting
     width: 300px;
     border: solid 1px;
     float: left;
-    clear: left;
     margin: 0 0 10px 0;
     padding: 2px;
 }
 
+/*
+Current List Table
+*/
 #currentListDisplay
 {
     width: 800px;
@@ -78,18 +98,23 @@ Currently, this breaks the hover highlighting
     resize: both;
 }
 
-#allListsTable
-{
-    width:100%;
-}
-
 #currentListTable
 {
+    border-spacing: 0px;
     width: 100%;
 }
 
-#fileHelper
+td
 {
-    display: block;
-    clear: both;
+    padding: 2px;
+}
+
+tr.selected
+{
+    background-color: #FBB9A7;
+}
+
+tr:hover:not(.header)
+{
+    background-color: #6D94F8; 
 }

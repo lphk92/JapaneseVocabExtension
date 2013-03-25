@@ -1,3 +1,9 @@
+$(document).ready(function() {
+    localStorage["temp"] = "";
+    loadListNames();
+    loadOptions();
+});
+
 function saveOptions()
 {
     localStorage["showReadingQuestion"] = $("#readingQuestion").is(":checked");
@@ -13,39 +19,43 @@ function loadOptions()
 
 function loadListNames()
 {
-    // First, clear the table displaying current list contents, since this may change
-    $("#currentListTable").html("");
-
-    var listNames = getListNames();
-    var tableString = "<tr class=\"header\"><th>Lists</th></tr>";
-    for (var i = 0 ; i < listNames.length ; i++)
+    try
     {
-        if (listNames[i] == currentListName())
+        $("#listNames").html("");
+        var listNames = getListNames();
+        for (var i = 0 ; i < listNames.length ; i++)
         {
-            tableString += "<tr><td class=\"selected\">" + listNames[i] + "</td></tr>" + "\n"; 
-            loadList(retrieveCurrentList());
-        }
-        else
-        {
-            tableString += "<tr><td>" + listNames[i] + "</td></tr>" + "\n"; 
+            var newItem = document.createElement("div");
+            $(newItem).html(listNames[i]);
+            $(newItem).addClass("list-name");
+
+            if (listNames[i] == currentListName())
+            {
+                $(newItem).addClass("selected");
+                loadList(listNames[i]);
+            }
+
+            // Add selection listener
+            $(newItem).click(function(){
+                var listName = this.innerHTML;
+                $(".list-name").removeClass("selected");
+                $(this).addClass("selected");
+                loadList(listName);
+            });
+
+            $("#listNames").append(newItem);
         }
     }
-    $("#allListsTable").html(tableString);
-
-    // Add the selection listener to each of the lists
-    $("#allListsTable td").click(function(){ 
-        var listName = this.innerHTML;
-        loadList(retrieveList(listName));
-        $("#allListsTable td").removeClass("selected");
-        $(this).addClass("selected");
-
-        setCurrentList(listName);
-    });
+    catch(e)
+    {
+        alert("Error: " + e.message);
+    }
 }
 
-function loadList(vocabList)
+function loadList(listName)
 {
-    var list = vocabList.list;
+    setCurrentList(listName);
+    var list = retrieveList(listName).list;
     //Note: By first writing all of the new HTML into a string, and then only setting the innerHTML
     //      element once, it takes much less time to load a list
     tableString = "<tr class=\"header\"><th>Kanji</th><th>Reading</th><th>Meaning</th></tr>";
@@ -59,14 +69,7 @@ function loadList(vocabList)
 
     // Add the selection listener to each of the entries 
     $("#currentListTable tr:not(.header)").click(function(){ 
-        if ($(this).hasClass("selected"))
-        {
-            $(this).removeClass("selected");
-        }
-        else
-        {
-            $(this).addClass("selected");
-        }
+        $(this).toggleClass("selected");
     });
 }
 
@@ -83,7 +86,7 @@ function addEntry()
     currentList.list.push(entry);
     storeList(currentList.name, currentList);
 
-    loadList(currentList);
+    loadList(currentList.name);
 
     $("#kanji").val("");
     $("#reading").val("");
@@ -103,8 +106,6 @@ function removeEntryFromList(vocabList, index)
     }
 }
 
-loadListNames();
-document.addEventListener('DOMContentLoaded', loadOptions);
 
 function readFileAsText(file)
 {
@@ -118,13 +119,9 @@ function readFileAsText(file)
 
 document.getElementById('importFile').addEventListener('change', function() { readFileAsText(this.files[0]); }, false);
 
-$("#save").click(function(){
-    saveOptions();
-});
+$("#save").click(function(){ saveOptions(); });
 
-$("#addEntry").click(function(){
-    addEntry();
-});
+$("#addEntry").click(function(){ addEntry(); });
 
 $("#addList").click(function(){
     var listName = $("#newListName").val();
@@ -138,7 +135,7 @@ $("#addList").click(function(){
         if (localStorage["temp"] != null && localStorage["temp"] != "")
         {
             var list = JSON.parse(localStorage["temp"]);
-            localStorage["temp"] == "";
+            localStorage["temp"] = "";
         }
 
         $("#newListName").val("");
@@ -177,5 +174,5 @@ $("#deleteEntries").click(function(){
         });
     }
 
-    loadList(retrieveCurrentList());
+    loadList(retrieveCurrentList().name);
 });

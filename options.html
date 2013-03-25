@@ -7,45 +7,63 @@
     </head>
 
     <body>
-        <label>Show Reading in Question</label>
-        <input type="checkbox" id="readingQuestion">
+        <div id="options" class="section">
+            <div class="title">Options</div>
+            <div class="content">
+                <label>Show Reading in Question</label>
+                <input type="checkbox" id="readingQuestion">
 
-        <br />
+                <br />
 
-        <label>Show Reading in Answer</label>
-        <input type="checkbox" id="readingAnswer">
+                <label>Show Reading in Answer</label>
+                <input type="checkbox" id="readingAnswer">
 
-        <p>
-        <button id="save">Save</button>
-        </p>
-
-        <div id="allListsDisplay">
-            <table id="allListsTable"></table>
+                <p>
+                <button id="save">Save</button>
+                </p>
+                <br class="anchor">
+            </div>
         </div>
 
-        <div id="addListContent">
-            <label>New List</label>
-            <input type="text" id="newListName">
-            <button id="addList">Add List</button>
-            <button id="deleteList">Delete Selected List</button>
+        <div id="lists" class="section">
+            <div class="title">Lists</div>
+            <div class="content">
+                <div id="listInfo">
+                    <div id="listNames"></div>
+                    <button id="addList">Add List</button>
+                    <button id="deleteList">Delete Selected List</button>
+                </div>
 
-            <br/>
+                <div id="addListContent">
+                    <label>New List</label>
+                    <input type="text" id="newListName">
 
-            <label>Import a CSV File</label>
-            <input type="file" id="importFile">
+                    <br/>
+
+                    <label>Import a CSV File</label>
+                    <input type="file" id="importFile">
+                </div>
+                <br class="anchor">
+            </div>
         </div>
 
-        <div id="addEntryContent">
-        <label>Kanji</label><input type="text" id="kanji">
-        <label>Reading</label><input type="text" id="reading">
-        <label>Meaning</label><input type="text" id="meaning">
-        <button id="addEntry">Add Entry</button>
-        <button id="deleteEntries">Delete Selected Entries</button>
-        </div>
+        <div id="editList" class="section">
+            <div class="title">Edit List</div>
+            <div class="content">
+                <div id="addEntryContent">
+                    <label>Kanji</label><input type="text" id="kanji">
+                    <label>Reading</label><input type="text" id="reading">
+                    <label>Meaning</label><input type="text" id="meaning">
+                    <button id="addEntry">Add Entry</button>
+                    <button id="deleteEntries">Delete Selected Entries</button>
+                </div>
 
-        <div id="currentListDisplay">
-            <table id="currentListTable">
-            </table>            
+                <div id="currentListDisplay">
+                    <table id="currentListTable">
+                    </table>            
+                </div>
+                <br class="anchor">
+            </div>
         </div>
     </body>
     
