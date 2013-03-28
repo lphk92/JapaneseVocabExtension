@@ -33,6 +33,18 @@ function deleteList(listName)
     }
 }
 
+function renameList(oldName, newName)
+{
+    var list = retrieveList(oldName);
+    list.name = newName;
+    storeList(newName, list);
+    deleteList(oldName);
+    if (currentListName() == oldName)
+    {
+        setCurrentList(newName);
+    }
+}
+
 function retrieveCurrentList()
 {
     return retrieveList(localStorage["currentList"]);

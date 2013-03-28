@@ -2,6 +2,24 @@ $(document).ready(function() {
     localStorage["temp"] = "";
     loadListNames();
     loadOptions();
+
+    $("#clearFile").hide();
+
+    $("#importFile").change(function() {
+        readFileAsText(this.files[0]);
+        $("#fileButton").text(this.files[0].name);
+        $("#clearFile").show();
+    });
+
+    $("#fileButton").click(function() {
+        $("#importFile").trigger("click");
+    });
+
+    $("#clearFile").click(function() {
+        localStorage["temp"] = "";
+        $("#fileButton").text("Select a file...");
+        $(this).hide();
+    });
 });
 
 function saveOptions()
@@ -111,18 +129,24 @@ function readFileAsText(file)
 {
     var reader = new FileReader();
     reader.readAsText(file);
-    reader.onload = function(event) {
-        var listString = JSON.stringify(csvToVocabList(event.target.result));
-        localStorage["temp"] = listString;
+    reader.onload = function(event) 
+    {
+        var list = csvToVocabList(event.target.result);
+        if(list)
+        {
+            var listString = JSON.stringify(list);
+            localStorage["temp"] = listString;
+        }
+        else
+        {
+            $("#clearFile").trigger('click');
+        }
     };
 }
 
-document.getElementById('importFile').addEventListener('change', function() { readFileAsText(this.files[0]); }, false);
 
 $("#save").click(function(){ saveOptions(); });
-
 $("#addEntry").click(function(){ addEntry(); });
-
 $("#addList").click(function(){
     var listName = $("#newListName").val();
     if (listName == "" || listName == null)
@@ -139,7 +163,7 @@ $("#addList").click(function(){
         }
 
         $("#newListName").val("");
-        $("#importFile").val("");
+        $("#clearFile").trigger("click");
 
         storeList(listName, list);
         loadListNames();
@@ -160,6 +184,15 @@ $("#deleteList").click(function(){
             setCurrentList(getListNames()[0]);
             loadListNames();
         }
+    }
+});
+
+$("#renameList").click(function(){
+    var newName = prompt("Enter new name for list");
+    if (newName)
+    {
+        renameList(currentListName(), newName);
+        loadListNames();
     }
 });
 

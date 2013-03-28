@@ -10,40 +10,40 @@
         <div id="options" class="section">
             <div class="title">Options</div>
             <div class="content">
-                <label>Show Reading in Question</label>
-                <input type="checkbox" id="readingQuestion">
-
-                <br />
-
-                <label>Show Reading in Answer</label>
-                <input type="checkbox" id="readingAnswer">
-
                 <p>
-                <button id="save">Save</button>
+                    <label>Show Reading in Question</label>
+                    <input type="checkbox" id="readingQuestion">
+
+                    <br />
+
+                    <label>Show Reading in Answer</label>
+                    <input type="checkbox" id="readingAnswer">
                 </p>
-                <br class="anchor">
+
+                <button id="save">Save</button>
             </div>
         </div>
 
-        <div id="lists" class="section">
+        <div class="section" id="lists">
             <div class="title">Lists</div>
             <div class="content">
                 <div id="listInfo">
                     <div id="listNames"></div>
-                    <button id="addList">Add List</button>
                     <button id="deleteList">Delete Selected List</button>
+                    <button id="renameList">Rename</button>
                 </div>
 
                 <div id="addListContent">
                     <label>New List</label>
                     <input type="text" id="newListName">
 
-                    <br/>
+                    <label>Import data from  CSV File</label>
+                    <button id="fileButton">Select a file...</button>
+                    <input type="file" id="importFile" style="display: none">
 
-                    <label>Import a CSV File</label>
-                    <input type="file" id="importFile">
+                    <button id="addList">Add</button>
+                    <button id="clearFile">Clear File</button>
                 </div>
-                <br class="anchor">
             </div>
         </div>
 
@@ -62,7 +62,6 @@
                     <table id="currentListTable">
                     </table>            
                 </div>
-                <br class="anchor">
             </div>
         </div>
     </body>

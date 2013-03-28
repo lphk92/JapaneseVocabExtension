@@ -3,17 +3,12 @@
     -webkit-backface-visibility: visible;
     -webkit-transform: rotateX(0deg) rotateY(0deg);
     -webkit-transform-style: preserve-3d;
-    -webkit-transition: all 1s ease-in-out;
+    -webkit-transition: all 0.7s ease-in-out;
 }
 .flippable .front, .flippable .back
 {
     width: inherit;
     height: inherit;
-    position:absolute;
-    top: 0;
-    left: 0;
-    padding: 10px;
-    text-align: center;
 
     -webkit-transform-style: preserve-3d;
     -webkit-backface-visibility: hidden;
