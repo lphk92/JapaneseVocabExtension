@@ -1,0 +1,22 @@
+{
+  "name": "Japanese Vocabulary Quiz",
+  "version": "2.1.0",
+  "description": "Presents a Japanese Vocabulary term upon opening or closing a tab. This enables you to passively study Japanese, without taking the time to sit down and dedicate a chunk of time specifically to studying vocabulary.",
+  "manifest_version": 2,
+
+  "browser_action": {
+      "default_icon": "resources/icon-active.png",
+      "default_title": "Japanese Vocab Test: Active",
+      "default_popup": "popup.html"
+  },
+
+  "background": {
+      "page": "background.html"
+  },
+
+  "options_page": "options.html",
+
+  "permissions": [
+    "tabs", "http://*/*"
+  ]
+}

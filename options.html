@@ -1,0 +1,72 @@
+<html>
+    <meta charset="UTF-8">
+    <head>
+        <title>Japanese Vocab Options</title>
+        <script src="libraries/jquery-1.9.1.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/options.css">
+    </head>
+
+    <body>
+        <div id="options" class="section">
+            <div class="title">Options</div>
+            <div class="content">
+                <p>
+                    <label>Show Reading in Question</label>
+                    <input type="checkbox" id="readingQuestion">
+
+                    <br />
+
+                    <label>Show Reading in Answer</label>
+                    <input type="checkbox" id="readingAnswer">
+                </p>
+
+                <button id="save">Save</button>
+            </div>
+        </div>
+
+        <div class="section" id="lists">
+            <div class="title">Lists</div>
+            <div class="content">
+                <div id="listInfo">
+                    <div id="listNames"></div>
+                    <button id="deleteList">Delete Selected List</button>
+                    <button id="renameList">Rename</button>
+                </div>
+
+                <div id="addListContent">
+                    <label>New List</label>
+                    <input type="text" id="newListName">
+
+                    <label>Import data from  CSV File</label>
+                    <button id="fileButton">Select a file...</button>
+                    <input type="file" id="importFile" style="display: none">
+
+                    <button id="addList">Add</button>
+                    <button id="clearFile">Clear File</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="editList" class="section">
+            <div class="title">Edit List</div>
+            <div class="content">
+                <div id="addEntryContent">
+                    <label>Kanji</label><input type="text" id="kanji">
+                    <label>Reading</label><input type="text" id="reading">
+                    <label>Meaning</label><input type="text" id="meaning">
+                    <button id="addEntry">Add Entry</button>
+                    <button id="deleteEntries">Delete Selected Entries</button>
+                </div>
+
+                <div id="currentListDisplay">
+                    <table id="currentListTable">
+                    </table>            
+                </div>
+            </div>
+        </div>
+    </body>
+    
+    <script type="text/javascript" src="scripts/listHandler.js"></script>
+    <script type="text/javascript" src="scripts/csvToVocabList.js"></script>
+    <script type="text/javascript" src="scripts/options.js"></script>
+</html>
