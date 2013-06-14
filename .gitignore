@@ -1,3 +1,4 @@
 # Ignore anything in the test directory
 test/*
 *.swp
+todo.txt
