@@ -19,6 +19,14 @@ button:hover, input:hover
 {
     box-shadow: 0px 0px 10px blue;
 }
+select
+{   
+    border: 1px solid #8FABB0;
+    border-radius: 5px;
+    padding: 3px 3px;
+    margin-bottom: 5px;
+    font-size: 15px;
+}
 
 div.section
 {
