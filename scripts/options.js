@@ -26,6 +26,7 @@ function saveOptions()
 {
     localStorage["showReadingQuestion"] = $("#readingQuestion").is(":checked");
     localStorage["showReadingAnswer"] = $("#readingAnswer").is(":checked");
+    localStorage["quizMode"] = $("#mode").val();
     alert("Options Saved!");
 }
 
@@ -33,6 +34,16 @@ function loadOptions()
 {
     $("#readingQuestion").prop('checked', localStorage["showReadingQuestion"] == "true");
     $("#readingAnswer").prop('checked', localStorage["showReadingAnswer"] == "true");
+
+    if (localStorage["quizMode"])
+    {
+        $("#mode").val(localStorage["quizMode"]);
+    }
+    else
+    {
+        // If it isn't stored, then store it immediately
+        localStorage["quizMode"] = $("#mode").val();
+    }
 }
 
 function loadListNames()

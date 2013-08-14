@@ -12,18 +12,19 @@ function quizFunction(tab)
     
         var showReadingQuestion = localStorage["showReadingQuestion"] == "true";
         var showReadingAnswer = localStorage["showReadingAnswer"] == "true";
-        
-        var question = showReadingQuestion ? entry.kanji + " (" + entry.reading + ")" : entry.kanji;
-        var answer = showReadingAnswer ? entry.kanji + " (" + entry.reading + ")" : entry.kanji;            
-        var solution = entry.meaning;
+        var quizMode = localStorage["quizMode"];
 
-        if (entry.kanji == "" || entry.kanji == null)
+        if (quizMode == "normal")
         {
-            var question = entry.reading;
-            var answer = entry.reading;
+            var question = showReadingQuestion ? entry.kanji + " (" + entry.reading + ")" : entry.kanji;
+            var answer = showReadingAnswer ? entry.kanji + " (" + entry.reading + ")" : entry.kanji;            
+            var solution = entry.meaning;
         }
-        else
-        {      
+        else if (quizMode == "kanji")
+        {
+            var question = entry.kanji;
+            var answer = entry.kanji;
+            var solution = entry.reading;
         }
 
         var input = prompt(question);
