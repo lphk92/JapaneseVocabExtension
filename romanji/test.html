@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <script>
+        var dict = {"あ":"a", "い":"i", "う":"u", "え":"e", "お":"o",
+                    "か":"ka", "き":"ki", "く":"ku", "け":"ke", "こ":"ko"};
+
+        function romanjify(kana)
+        {
+            var romanji = "";
+            for(var i = 0 ; i < kana.length ; i++)
+            {
+                var curr = kana[i];
+                document.write("<br>\nCurrent character: " + curr);
+                romanji = romanji + dict[kana[i]];
+            }
+            return romanji;
+        }
+
+        var japanese = "かこいい"
+        alert("Romanjifyied! :  " + romanjify(japanese));
+        </script>
+    </body>
+</html>
