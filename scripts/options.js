@@ -26,6 +26,7 @@ function saveOptions()
 {
     localStorage["showReadingQuestion"] = $("#readingQuestion").is(":checked");
     localStorage["showReadingAnswer"] = $("#readingAnswer").is(":checked");
+    localStorage["readingRomanji"] = $("#readingRomanji").is(":checked");
     localStorage["quizMode"] = $("#mode").val();
     alert("Options Saved!");
 }
@@ -34,6 +35,7 @@ function loadOptions()
 {
     $("#readingQuestion").prop('checked', localStorage["showReadingQuestion"] == "true");
     $("#readingAnswer").prop('checked', localStorage["showReadingAnswer"] == "true");
+    $("#readingRomanji").prop('checked', localStorage["readingRomanji"] == "true");
 
     if (localStorage["quizMode"])
     {

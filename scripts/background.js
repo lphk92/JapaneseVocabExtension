@@ -12,19 +12,22 @@ function quizFunction(tab)
     
         var showReadingQuestion = localStorage["showReadingQuestion"] == "true";
         var showReadingAnswer = localStorage["showReadingAnswer"] == "true";
+        var readingRomanji = localStorage["readingRomanji"] == "true";
         var quizMode = localStorage["quizMode"];
+
+        var reading = readingRomanji ? romanjify(entry.reading) : entry.reading;
 
         if (quizMode == "normal")
         {
-            var question = showReadingQuestion ? entry.kanji + " (" + entry.reading + ")" : entry.kanji;
-            var answer = showReadingAnswer ? entry.kanji + " (" + entry.reading + ")" : entry.kanji;            
+            var question = showReadingQuestion ? entry.kanji + " (" + reading + ")" : entry.kanji;
+            var answer = showReadingAnswer ? entry.kanji + " (" + reading + ")" : entry.kanji;            
             var solution = entry.meaning;
         }
         else if (quizMode == "kanji")
         {
             var question = entry.kanji;
             var answer = entry.kanji;
-            var solution = entry.reading;
+            var solution = reading;
         }
 
         var input = prompt(question);
