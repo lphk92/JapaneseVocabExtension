@@ -1,7 +1,7 @@
 {
   "name": "Japanese Vocabulary Quiz",
   "version": "2.1.1",
-  "description": "Have trouble finding the time to study vocabulary? No problem! This extension will quiz you on a word everytime that you open or close a tab, helping expand your vocabulary without needing to set aside time specifically for studying. Create your own lists with our interface, or upload an existing Comma-Separated-Values (CSV) file.\n\nQuestions? Comments? Please let us know by contacting lphk92@gmail.com \n\nInterested in contributing to the project? Source code available at https://github.com/lphk92/JapaneseVocabExtension",
+  "description": "A simple quizzing extension that quizes the user on a Japanese vocab word every time they open or close a tab.",
   "manifest_version": 2,
 
   "browser_action": {
