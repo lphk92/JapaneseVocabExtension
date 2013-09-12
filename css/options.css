@@ -64,12 +64,12 @@ div#lists
     }
     div#lists #addListContent
     {
-        width: 250px;
+        width: 270px;
         float: left;
     }
-    div#lists #addListContent #fileButton 
+    div#lists #fileButton
     {
-        display: block;
+        max-width: 130px;
     }
     div#listNames
     {
@@ -91,6 +91,15 @@ div#lists
     div.list-name:hover
     {
         background-color: #0080FF;
+    }
+    a#downloadLink
+    {
+        text-decoration: none;
+    }
+    button#addList
+    {
+        display: block;
+        clear: both;
     }
 
 div#editList
