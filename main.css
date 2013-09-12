@@ -1,0 +1,38 @@
+body
+{
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 10px;
+    font-family: Courier New;
+}
+h2
+{
+    margin-left: 25px;
+}
+p
+{
+    margin-left: 50px;
+}
+ul
+{
+    list-style-type: none;
+}
+div.list-box
+{
+    float: left;
+    padding-right: 10px;
+}
+div#nav
+{
+    background-color: gray;
+}
+    div#nav a
+    {
+        display: inline-block;
+        padding: 10px;
+        text-decoration: none;
+    }
+    div#nav a:hover
+    {
+        background-color: lightgray;
+    }
