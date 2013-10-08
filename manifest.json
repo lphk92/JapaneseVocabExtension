@@ -1,6 +1,6 @@
 {
   "name": "Japanese Vocabulary Quiz",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "A simple quizzing extension that quizes the user on a Japanese vocab word every time they open or close a tab.",
   "manifest_version": 2,
 
