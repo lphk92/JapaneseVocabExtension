@@ -3,6 +3,11 @@ body
     background-color: white;
     font-family: Arial;
 }
+input.invisible
+{
+    border: 0px;
+    resize: none;
+}
 #lists input, #editList input
 {
     display: block;

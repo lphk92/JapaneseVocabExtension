@@ -92,15 +92,25 @@ function loadList(listName)
     tableString = "<tr class=\"header\"><th>Kanji</th><th>Reading</th><th>Meaning</th></tr>";
     for (var i = 0 ; i < list.length ; i++)
     {
-        tableString += "<tr data-index=" + list[i]["index"] + "><td>" + list[i]["kanji"] + "</td>"
-        tableString += "<td>" + list[i]["reading"] + "</td>"
-        tableString += "<td>" + list[i]["meaning"] + "</td></tr>\n";
+        tableString += "<tr data-index=" + list[i]["index"] + "><td><input class=\"invisible\" type=\"text\" value=\"" + list[i]["kanji"] + "\"></td>"
+        tableString += "<td><input class=\"invisible\" type=\"text\" value=\"" + list[i]["reading"] + "\"></td>"
+        tableString += "<td><input class=\"invisible\" type=\"text\" value=\"" + list[i]["meaning"] + "\"></td></tr>\n";
     }
     $("#currentListTable").html(tableString);
 
     // Add the selection listener to each of the entries 
     $("#currentListTable tr:not(.header)").click(function(){ 
         $(this).toggleClass("selected");
+    });
+
+    // Add the selection listener to each of the entries 
+    var currentList = retrieveCurrentList();
+    $("#currentListTable input[type=text]").change(function(){ 
+        alert("Aha! You changed something!");
+        //TODO: Remove existing entry from list before pushing edit
+        //currentList.list.push(entry);
+        storeList(currentList.name, currentList);
+        loadList(currentList.name);
     });
 }
 
