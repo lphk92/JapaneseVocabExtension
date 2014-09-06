@@ -2,7 +2,7 @@
     <meta charset="UTF-8">
     <head>
         <title>Japanese Vocab Options</title>
-        <script src="libraries/jquery-1.9.1.js"></script>
+        <script src="lib/jquery-1.9.1.js"></script>
         <link rel="stylesheet" type="text/css" href="css/options.css">
     </head>
 
@@ -10,19 +10,19 @@
         <div id="options" class="section">
             <div class="title">Options</div>
             <div class="content">
-                <p>
-                    <label>Show Reading in Question</label>
-                    <input type="checkbox" id="readingQuestion">
+                    <fieldset>
+                        <legend>Question</legend>
+                        <input type="checkbox" id="questionKanji"> Show Kanji <br>
+                        <input type="checkbox" id="questionKana"> Show Kana <br>
+                        <input type="checkbox" id="questionRomanji"> Show Romanji <br>
+                    </fieldset>
 
-                    <br>
-
-                    <label>Show Reading in Answer</label>
-                    <input type="checkbox" id="readingAnswer">
-
-                    <br>
-
-                    <label>Show Reading as Romanji</label>
-                    <input type="checkbox" id="readingRomanji">
+                    <fieldset>
+                        <legend>Answer</legend>
+                        <input type="checkbox" id="answerKanji"> Show Kanji <br>
+                        <input type="checkbox" id="answerKana"> Show Kana <br>
+                        <input type="checkbox" id="answerRomanji"> Show Romanji <br>
+                    </fieldset>
 
                     <br>
 
@@ -31,7 +31,7 @@
                         <option value="normal">Normal</option>
                         <option value="kanji">Kanji</option>
                     </select>
-                </p>
+                    <br>
 
                 <button id="save">Save</button>
             </div>
@@ -52,7 +52,9 @@
 
                     <label>Import data from  CSV File</label>
                     <button id="fileButton">Select a file...</button>
-                    <a id="downloadLink" href="http://lphk92.github.io/JapaneseVocabExtension/lists.html"><button id="downloadLists">Download Lists</button></a>
+                    <a id="downloadLink" href="http://lphk92.github.io/JapaneseVocabExtension/lists.html">
+                        <button id="downloadLists">Download Lists</button>
+                    </a>
                     <input type="file" id="importFile" style="display: none">
 
                     <button id="clearFile">Clear File</button>
@@ -81,7 +83,7 @@
         </div>
     </body>
     
-    <script type="text/javascript" src="scripts/listHandler.js"></script>
-    <script type="text/javascript" src="scripts/csvToVocabList.js"></script>
-    <script type="text/javascript" src="scripts/options.js"></script>
+    <script type="text/javascript" src="js/listHandler.js"></script>
+    <script type="text/javascript" src="js/csvToVocabList.js"></script>
+    <script type="text/javascript" src="js/options.js"></script>
 </html>

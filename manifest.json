@@ -5,7 +5,7 @@
   "manifest_version": 2,
 
   "browser_action": {
-      "default_icon": "resources/icon-active.png",
+      "default_icon": "rsc/icon-active.png",
       "default_title": "Japanese Vocabulary Quiz",
       "default_popup": "popup.html"
   },

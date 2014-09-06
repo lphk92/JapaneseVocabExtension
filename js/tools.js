@@ -2,7 +2,7 @@ function updateIcon()
 {
     var active = localStorage["active"] == "true";
 
-    var iconPath = active ? "resources/icon-active.png" : "resources/icon.png";
+    var iconPath = active ? "rsc/icon-active.png" : "rsc/icon.png";
     var iconTitle = active ? "Active" : "Inactive";
     iconTitle = "Japanese Vocab Quiz: " + iconTitle;
 

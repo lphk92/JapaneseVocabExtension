@@ -1,21 +1,25 @@
-$(document).ready(function() {
+$(document).ready(function()
+{
     localStorage["temp"] = "";
     loadListNames();
     loadOptions();
 
     $("#clearFile").hide();
 
-    $("#importFile").change(function() {
+    $("#importFile").change(function()
+    {
         readFileAsText(this.files[0]);
         $("#fileButton").text(this.files[0].name);
         $("#clearFile").show();
     });
 
-    $("#fileButton").click(function() {
+    $("#fileButton").click(function()
+    {
         $("#importFile").trigger("click");
     });
 
-    $("#clearFile").click(function() {
+    $("#clearFile").click(function()
+    {
         localStorage["temp"] = "";
         $("#fileButton").text("Select a file...");
         $(this).hide();
@@ -24,15 +28,32 @@ $(document).ready(function() {
 
 function saveOptions()
 {
+    localStorage["questionKanji"] = $("#questionKanji").is(":checked");
+    localStorage["questionKana"] = $("#questionKana").is(":checked");
+    localStorage["questionRomanji"] = $("#questionRomanji").is(":checked");
+
+    localStorage["answerKanji"] = $("#answerKanji").is(":checked");
+    localStorage["answerKana"] = $("#answerKana").is(":checked");
+    localStorage["answerRomanji"] = $("#answerRomanji").is(":checked");
+
     localStorage["showReadingQuestion"] = $("#readingQuestion").is(":checked");
     localStorage["showReadingAnswer"] = $("#readingAnswer").is(":checked");
     localStorage["readingRomanji"] = $("#readingRomanji").is(":checked");
+
     localStorage["quizMode"] = $("#mode").val();
     alert("Options Saved!");
 }
 
 function loadOptions()
 {
+    $("#questionKanji").prop('checked', localStorage["questionKanji"] == "true");
+    $("#questionKana").prop('checked', localStorage["questionKana"] == "true");
+    $("#questionRomanji").prop('checked', localStorage["questionRomanji"] == "true");
+
+    $("#answerKanji").prop('checked', localStorage["answerKanji"] == "true");
+    $("#answerKana").prop('checked', localStorage["answerKana"] == "true");
+    $("#answerRomanji").prop('checked', localStorage["answerRomanji"] == "true");
+
     $("#readingQuestion").prop('checked', localStorage["showReadingQuestion"] == "true");
     $("#readingAnswer").prop('checked', localStorage["showReadingAnswer"] == "true");
     $("#readingRomanji").prop('checked', localStorage["readingRomanji"] == "true");
@@ -147,7 +168,6 @@ function removeEntryFromList(vocabList, index)
     }
 }
 
-
 function readFileAsText(file)
 {
     var reader = new FileReader();
@@ -170,7 +190,8 @@ function readFileAsText(file)
 
 $("#save").click(function(){ saveOptions(); });
 $("#addEntry").click(function(){ addEntry(); });
-$("#addList").click(function(){
+$("#addList").click(function()
+{
     var listName = $("#newListName").val();
     if (listName == "" || listName == null)
     {
@@ -193,7 +214,8 @@ $("#addList").click(function(){
     }
 });
 
-$("#deleteList").click(function(){
+$("#deleteList").click(function()
+{
     if (getListNames().length == 1)
     {
         alert("You must always have at least one list");
@@ -210,7 +232,8 @@ $("#deleteList").click(function(){
     }
 });
 
-$("#renameList").click(function(){
+$("#renameList").click(function()
+{
     var newName = prompt("Enter new name for list");
     if (newName)
     {
@@ -219,7 +242,8 @@ $("#renameList").click(function(){
     }
 });
 
-$("#deleteEntries").click(function(){
+$("#deleteEntries").click(function()
+{
     var conf = confirm("Are you sure you want to delete the selected entries? You will not be able to undo this operation.");
     if (conf)
     {
