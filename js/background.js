@@ -10,17 +10,32 @@ function quizFunction(tab)
     {
         entry = getRandomEntry();
     
-        var showReadingQuestion = localStorage["showReadingQuestion"] == "true";
-        var showReadingAnswer = localStorage["showReadingAnswer"] == "true";
-        var readingRomanji = localStorage["readingRomanji"] == "true";
+        var questionKanji = localStorage["questionKanji"] == "true";
+        var questionKana = localStorage["questionKana"] == "true";
+        var questionRomanji = localStorage["questionRomanji"] == "true";
+
+        var answerKanji = localStorage["answerKanji"] == "true";
+        var answerKana = localStorage["answerKana"] == "true";
+        var answerRomanji = localStorage["answerRomanji"] == "true";
+
         var quizMode = localStorage["quizMode"];
 
-        var reading = readingRomanji ? romanjify(entry.reading) : entry.reading;
+        var q = "";
+        if (questionKanji) q += entry.kanji;
+        if (questionKana && questionRomanji) q += " (" + entry.reading + ", " + romanjify(entry.reading) + ")";
+        else if (questionKana) q += " (" + entry.reading + ")";
+        else if (questionRomanji) q += " (" + romanjify(entry.reading) + ")";
+
+        var a = "";
+        if (answerKanji) a += entry.kanji;
+        if (answerKana && answerRomanji) a += " (" + entry.reading + ", " + romanjify(entry.reading) + ")";
+        else if (answerKana) a += " (" + entry.reading + ")";
+        else if (answerRomanji) a += " (" + romanjify(entry.reading) + ")";
 
         if (quizMode == "normal")
         {
-            var question = showReadingQuestion ? entry.kanji + " (" + reading + ")" : entry.kanji;
-            var answer = showReadingAnswer ? entry.kanji + " (" + reading + ")" : entry.kanji;            
+            var question = q; 
+            var answer = a;            
             var solution = entry.meaning;
         }
         else if (quizMode == "kanji")

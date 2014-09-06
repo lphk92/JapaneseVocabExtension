@@ -10,26 +10,19 @@
         <div id="options" class="section">
             <div class="title">Options</div>
             <div class="content">
-                <p>
-                    <label>Reading Options</label>
-                    <select id="reading-mode">
-                        <option value="Kanji">Kanji</option>
-                    </select>
+                    <fieldset>
+                        <legend>Question</legend>
+                        <input type="checkbox" id="questionKanji"> Show Kanji <br>
+                        <input type="checkbox" id="questionKana"> Show Kana <br>
+                        <input type="checkbox" id="questionRomanji"> Show Romanji <br>
+                    </fieldset>
 
-                    <br>
-
-                    <label>Show Reading in Question</label>
-                    <input type="checkbox" id="readingQuestion">
-
-                    <br>
-
-                    <label>Show Reading in Answer</label>
-                    <input type="checkbox" id="readingAnswer">
-
-                    <br>
-
-                    <label>Show Reading as Romanji</label>
-                    <input type="checkbox" id="readingRomanji">
+                    <fieldset>
+                        <legend>Answer</legend>
+                        <input type="checkbox" id="answerKanji"> Show Kanji <br>
+                        <input type="checkbox" id="answerKana"> Show Kana <br>
+                        <input type="checkbox" id="answerRomanji"> Show Romanji <br>
+                    </fieldset>
 
                     <br>
 
@@ -38,7 +31,7 @@
                         <option value="normal">Normal</option>
                         <option value="kanji">Kanji</option>
                     </select>
-                </p>
+                    <br>
 
                 <button id="save">Save</button>
             </div>

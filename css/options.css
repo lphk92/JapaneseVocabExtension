@@ -51,6 +51,12 @@ div.content
     width: 100%;
 }
 
+div#options fieldset
+{
+    border: 1px solid black;;
+    width: 70%;
+}
+
 div#lists
 {
     padding-bottom: 10px;
