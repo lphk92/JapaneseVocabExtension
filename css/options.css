@@ -51,11 +51,16 @@ div.content
     width: 100%;
 }
 
-div#options fieldset
+div#options
 {
-    border: 1px solid black;;
-    width: 70%;
+    width: 200px;
+    float: left;
 }
+    div#options fieldset
+    {
+        border: 1px solid black;;
+        width: 70%;
+    }
 
 div#lists
 {
@@ -122,6 +127,7 @@ div#editList
     div#editList #currentListDisplay
     {
         width: 700px;
+        min-width: 350px;
         height: 300px;
         border: solid 1px;
         margin: 0 0 0 10px;
