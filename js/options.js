@@ -36,10 +36,6 @@ function saveOptions()
     localStorage["answerKana"] = $("#answerKana").is(":checked");
     localStorage["answerRomanji"] = $("#answerRomanji").is(":checked");
 
-    localStorage["showReadingQuestion"] = $("#readingQuestion").is(":checked");
-    localStorage["showReadingAnswer"] = $("#readingAnswer").is(":checked");
-    localStorage["readingRomanji"] = $("#readingRomanji").is(":checked");
-
     localStorage["quizMode"] = $("#mode").val();
     alert("Options Saved!");
 }
@@ -53,10 +49,6 @@ function loadOptions()
     $("#answerKanji").prop('checked', localStorage["answerKanji"] == "true");
     $("#answerKana").prop('checked', localStorage["answerKana"] == "true");
     $("#answerRomanji").prop('checked', localStorage["answerRomanji"] == "true");
-
-    $("#readingQuestion").prop('checked', localStorage["showReadingQuestion"] == "true");
-    $("#readingAnswer").prop('checked', localStorage["showReadingAnswer"] == "true");
-    $("#readingRomanji").prop('checked', localStorage["readingRomanji"] == "true");
 
     if (localStorage["quizMode"])
     {
@@ -113,9 +105,17 @@ function loadList(listName)
     tableString = "<tr class=\"header\"><th>Kanji</th><th>Reading</th><th>Meaning</th></tr>";
     for (var i = 0 ; i < list.length ; i++)
     {
-        tableString += "<tr data-index=" + list[i]["index"] + "><td><input class=\"invisible\" type=\"text\" value=\"" + list[i]["kanji"] + "\"></td>"
-        tableString += "<td><input class=\"invisible\" type=\"text\" value=\"" + list[i]["reading"] + "\"></td>"
-        tableString += "<td><input class=\"invisible\" type=\"text\" value=\"" + list[i]["meaning"] + "\"></td></tr>\n";
+        tableString += "<tr data-index=" + list[i]["index"] + ">";
+        tableString += "<td><input class=\"invisible\" type=\"text\"" +
+                                "data-index=\"" + list[i]["index"] + "\"" +
+                                "name=\"kanji\" value=\"" + list[i]["kanji"] + "\"></td>";
+        tableString += "<td><input class=\"invisible\" type=\"text\"" +
+                                "data-index=\"" + list[i]["index"] + "\"" +
+                                "name=\"reading\" value=\"" + list[i]["reading"] + "\"></td>";
+        tableString += "<td><input class=\"invisible\" type=\"text\"" +
+                                "data-index=\"" + list[i]["index"] + "\"" +
+                                "name=\"meaning\" value=\"" + list[i]["meaning"] + "\"></td>";
+        tableString += "</tr>\n";
     }
     $("#currentListTable").html(tableString);
 
@@ -124,12 +124,12 @@ function loadList(listName)
         $(this).toggleClass("selected");
     });
 
-    // Add the selection listener to each of the entries 
+    // Add the change listener to each of the entries 
     var currentList = retrieveCurrentList();
     $("#currentListTable input[type=text]").change(function(){ 
-        alert("Aha! You changed something!");
-        //TODO: Remove existing entry from list before pushing edit
-        //currentList.list.push(entry);
+        var index = $(this).attr("data-index");
+        var field = $(this).attr("name");
+        currentList.list[index][field] = $(this).val();
         storeList(currentList.name, currentList);
         loadList(currentList.name);
     });
@@ -222,7 +222,9 @@ $("#deleteList").click(function()
     }
     else
     {
-        var conf = confirm("Are you sure you want to delete the list \"" + currentListName() + "\"? You will not be able to undo this operation.");
+        var conf = confirm("Are you sure you want to delete the list \"" +
+                             currentListName() +
+                             "\"? You will not be able to undo this operation.");
         if (conf)
         {
             deleteList(currentListName());
@@ -256,3 +258,13 @@ $("#deleteEntries").click(function()
 
     loadList(retrieveCurrentList().name);
 });
+
+/*
+$("#saveList").click(function()
+{
+    var conf = confirm("Save changes to this list?");
+    if (conf)
+    {
+        //TODO: Save the list when clicked
+    }
+}*/
