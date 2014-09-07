@@ -20,17 +20,25 @@ function quizFunction(tab)
 
         var quizMode = localStorage["quizMode"];
 
+        var left = " (";
+        var right = ")";
+        if (entry.kanji.trim() == "")
+        {
+            left = "";
+            right = "";
+        }
+
         var q = "";
         if (questionKanji) q += entry.kanji;
-        if (questionKana && questionRomanji) q += " (" + entry.reading + ", " + romanjify(entry.reading) + ")";
-        else if (questionKana) q += " (" + entry.reading + ")";
-        else if (questionRomanji) q += " (" + romanjify(entry.reading) + ")";
+        if (questionKana && questionRomanji) q += left + entry.reading + ", " + romanjify(entry.reading) + right;
+        else if (questionKana) q += left + entry.reading + right;
+        else if (questionRomanji) q += left + romanjify(entry.reading) + right;
 
         var a = "";
         if (answerKanji) a += entry.kanji;
-        if (answerKana && answerRomanji) a += " (" + entry.reading + ", " + romanjify(entry.reading) + ")";
-        else if (answerKana) a += " (" + entry.reading + ")";
-        else if (answerRomanji) a += " (" + romanjify(entry.reading) + ")";
+        if (answerKana && answerRomanji) a += left + entry.reading + ", " + romanjify(entry.reading) + right;
+        else if (answerKana) a += left + entry.reading + right;
+        else if (answerRomanji) a += left + romanjify(entry.reading) + right;
 
         if (quizMode == "normal")
         {
