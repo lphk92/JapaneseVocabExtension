@@ -24,6 +24,8 @@ $(document).ready(function()
         $("#fileButton").text("Select a file...");
         $(this).hide();
     });
+
+    $("#currentListTable").editableTableWidget();
 });
 
 function saveOptions()
@@ -106,15 +108,9 @@ function loadList(listName)
     for (var i = 0 ; i < list.length ; i++)
     {
         tableString += "<tr data-index=" + list[i]["index"] + ">";
-        tableString += "<td><input class=\"invisible\" type=\"text\"" +
-                                "data-index=\"" + list[i]["index"] + "\"" +
-                                "name=\"kanji\" value=\"" + list[i]["kanji"] + "\"></td>";
-        tableString += "<td><input class=\"invisible\" type=\"text\"" +
-                                "data-index=\"" + list[i]["index"] + "\"" +
-                                "name=\"reading\" value=\"" + list[i]["reading"] + "\"></td>";
-        tableString += "<td><input class=\"invisible\" type=\"text\"" +
-                                "data-index=\"" + list[i]["index"] + "\"" +
-                                "name=\"meaning\" value=\"" + list[i]["meaning"] + "\"></td>";
+        tableString += "<td data-index=\"" + list[i]["index"] + "\" name=\"kanji\">" + list[i]["kanji"] + "</td>";
+        tableString += "<td data-index=\"" + list[i]["index"] + "\" name=\"reading\">" + list[i]["reading"] + "</td>";
+        tableString += "<td data-index=\"" + list[i]["index"] + "\" name=\"meaning\">" + list[i]["meaning"] + "</td>";
         tableString += "</tr>\n";
     }
     $("#currentListTable").html(tableString);
@@ -126,12 +122,13 @@ function loadList(listName)
 
     // Add the change listener to each of the entries 
     var currentList = retrieveCurrentList();
-    $("#currentListTable input[type=text]").change(function(){ 
+    $("#currentListTable td").on('change', function(evt, newValue) {
         var index = $(this).attr("data-index");
         var field = $(this).attr("name");
-        currentList.list[index][field] = $(this).val();
+        currentList.list[index-1][field] = newValue;
         storeList(currentList.name, currentList);
-        loadList(currentList.name);
+        //alert("Stored new data...\nList name: " + currentList.name + "\nIndex: " + index + "\nField: " + field + "\nValue: " + newValue);
+        return true;
     });
 }
 
@@ -146,9 +143,8 @@ function addEntry()
 
     var entry = {"index": index, "kanji": kanji, "reading": reading, "meaning": meaning, "visible": true};
     currentList.list.push(entry);
-    storeList(currentList.name, currentList);
-
-    loadList(currentList.name);
+    storeList(currentListName(), currentList);
+    loadList(currentListName());
 
     $("#kanji").val("");
     $("#reading").val("");
