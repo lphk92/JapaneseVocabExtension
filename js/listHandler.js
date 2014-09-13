@@ -17,6 +17,7 @@ function retrieveList(listName)
     }
 
     var list = JSON.parse(stringifiedList);
+    list.name = listName;
     return list;
 }
 
