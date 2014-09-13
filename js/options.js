@@ -187,7 +187,6 @@ function readFileAsText(file)
     };
 }
 
-
 $("#save").click(function(){ saveOptions(); });
 $("#addEntry").click(function(){ addEntry(); });
 $("#addList").click(function()
@@ -258,13 +257,3 @@ $("#deleteEntries").click(function()
 
     loadList(retrieveCurrentList().name);
 });
-
-/*
-$("#saveList").click(function()
-{
-    var conf = confirm("Save changes to this list?");
-    if (conf)
-    {
-        //TODO: Save the list when clicked
-    }
-}*/

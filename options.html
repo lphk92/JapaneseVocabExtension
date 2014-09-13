@@ -7,78 +7,91 @@
     </head>
 
     <body>
-        <div id="options" class="section">
-            <div class="title">Options</div>
-            <div class="content">
-                    <fieldset>
-                        <legend>Question</legend>
-                        <input type="checkbox" id="questionKanji"> Show Kanji <br>
-                        <input type="checkbox" id="questionKana"> Show Kana <br>
-                        <input type="checkbox" id="questionRomanji"> Show Romanji <br>
-                    </fieldset>
+        <div id="left">
+            <div id="options" class="section">
+                <div class="title">Options</div>
+                <div class="content">
+                        <fieldset>
+                            <legend>Question</legend>
+                            <input type="checkbox" id="questionKanji"> Show Kanji <br>
+                            <input type="checkbox" id="questionKana"> Show Kana <br>
+                            <input type="checkbox" id="questionRomanji"> Show Romanji <br>
+                        </fieldset>
 
-                    <fieldset>
-                        <legend>Answer</legend>
-                        <input type="checkbox" id="answerKanji"> Show Kanji <br>
-                        <input type="checkbox" id="answerKana"> Show Kana <br>
-                        <input type="checkbox" id="answerRomanji"> Show Romanji <br>
-                    </fieldset>
+                        <fieldset>
+                            <legend>Answer</legend>
+                            <input type="checkbox" id="answerKanji"> Show Kanji <br>
+                            <input type="checkbox" id="answerKana"> Show Kana <br>
+                            <input type="checkbox" id="answerRomanji"> Show Romanji <br>
+                        </fieldset>
 
-                    <br>
+                        <br>
 
-                    <label>Quiz Mode</label>
-                    <select id="mode">
-                        <option value="normal">Normal</option>
-                        <option value="kanji">Kanji</option>
-                    </select>
-                    <br>
+                        <label>Quiz Mode</label>
+                        <select id="mode">
+                            <option value="normal">Normal</option>
+                            <option value="kanji">Kanji</option>
+                        </select>
+                        <br>
 
-                <button id="save">Save</button>
-            </div>
-        </div>
-
-        <div class="section" id="lists">
-            <div class="title">Lists</div>
-            <div class="content">
-                <div id="listInfo">
-                    <div id="listNames"></div>
-                    <button id="deleteList">Delete Selected List</button>
-                    <button id="renameList">Rename</button>
+                    <button id="save">Save</button>
                 </div>
+            </div>
 
-                <div id="addListContent">
-                    <label>New List</label>
-                    <input type="text" id="newListName">
-
-                    <label>Import data from  CSV File</label>
-                    <button id="fileButton">Select a file...</button>
-                    <a id="downloadLink" href="http://lphk92.github.io/JapaneseVocabExtension/lists.html">
-                        <button id="downloadLists">Download Lists</button>
-                    </a>
-                    <input type="file" id="importFile" style="display: none">
-
-                    <button id="clearFile">Clear File</button>
-                    <button id="addList">Add</button>
-
+            <div id="feedback" class="section">
+                <div class="title">Feedback</div>
+                <div class="content">
+                    <button id="review">Write a Review</button>
+                    <button id="request">Request a New Feature</button>
+                    <button id="thanks">Say Thanks!</button>
                 </div>
             </div>
         </div>
 
-        <div id="editList" class="section">
-            <div class="title">Edit List</div>
-            <div class="content">
-                <div id="addEntryContent">
-                    <label>Kanji</label><input type="text" id="kanji">
-                    <label>Reading</label><input type="text" id="reading">
-                    <label>Meaning</label><input type="text" id="meaning">
-                    <button id="addEntry">Add Entry</button>
-                    <button id="deleteEntries">Delete Selected Entries</button>
-                    <button id="saveList">Save Changes</button>
-                </div>
+        <div id="center">
+            <div class="section" id="lists">
+                <div class="title">Lists</div>
+                <div class="content">
+                    <div id="listInfo">
+                        <div id="listNames"></div>
+                        <button id="deleteList">Delete Selected List</button>
+                        <button id="renameList">Rename</button>
+                    </div>
 
-                <div id="currentListDisplay">
-                    <table id="currentListTable">
-                    </table>            
+                    <div id="addListContent">
+                        <label>New List</label>
+                        <input type="text" id="newListName">
+
+                        <label>Import data from  CSV File</label>
+                        <button id="fileButton">Select a file...</button>
+                        <a id="downloadLink" href=
+                            "http://lphk92.github.io/JapaneseVocabExtension/lists.html">
+                            <button id="downloadLists">Download Lists</button>
+                        </a>
+                        <input type="file" id="importFile" style="display: none">
+
+                        <button id="clearFile">Clear File</button>
+                        <button id="addList">Add</button>
+
+                    </div>
+                </div>
+            </div>
+
+            <div id="editList" class="section">
+                <div class="title">Edit List</div>
+                <div class="content">
+                    <div id="addEntryContent">
+                        <label>Kanji</label><input type="text" id="kanji">
+                        <label>Reading</label><input type="text" id="reading">
+                        <label>Meaning</label><input type="text" id="meaning">
+                        <button id="addEntry">Add Entry</button>
+                        <button id="deleteEntries">Delete Selected Entries</button>
+                    </div>
+
+                    <div id="currentListDisplay">
+                        <table id="currentListTable">
+                        </table>            
+                    </div>
                 </div>
             </div>
         </div>

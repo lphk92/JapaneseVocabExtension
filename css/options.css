@@ -56,20 +56,37 @@ div.content
     width: 100%;
 }
 
-div#options
+div#left
 {
-    width: 200px;
+    width: 215px;
     float: left;
 }
+    div#options
+    {
+        width: 200px;
+        float: left;
+        clear: both;
+    }
     div#options fieldset
     {
         border: 1px solid black;;
         width: 70%;
     }
+    div#feedback
+    {
+        width: 200px;
+        float: left;
+    }
 
+div#center
+{
+    width: 1000px;;
+    float:left;
+}
 div#lists
 {
     padding-bottom: 10px;
+    float: left;
     clear: right;
 }
     div#lists #listInfo
@@ -131,7 +148,7 @@ div#editList
     }
     div#editList #currentListDisplay
     {
-        width: 700px;
+        width: 600px;
         min-width: 350px;
         height: 300px;
         border: solid 1px;
@@ -146,6 +163,20 @@ div#editList
     {
         border-spacing: 0px;
         width: 100%;
+    }
+    div#currentListTable input
+    {
+        border: 1px solid #8FABB0;
+        border-radius: 0px;
+        padding: 0px 0px;
+    }
+    div#currentListTable input[name="kanji"]
+    {
+        width: 125px;
+    }
+    div#currentListTable input[name="reading"]
+    {
+        width:200px;
     }
     td
     {
