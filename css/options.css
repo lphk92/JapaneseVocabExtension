@@ -36,7 +36,7 @@ select
 
 div.section
 {
-    background-color: rgba(238, 238, 238, 0.6);
+    background-color: rgba(238, 238, 238, 0.75);
     margin: 5px;
     border: 3px solid #443333; 
     border-radius: 2px;

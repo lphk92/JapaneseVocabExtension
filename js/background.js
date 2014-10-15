@@ -50,7 +50,7 @@ function quizFunction(tab)
         {
             var question = entry.kanji;
             var answer = entry.kanji;
-            var solution = reading;
+            var solution = entry.reading;
         }
 
         var input = prompt(question);
