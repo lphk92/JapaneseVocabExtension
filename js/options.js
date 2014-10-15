@@ -130,6 +130,9 @@ function loadList(listName)
         //alert("Stored new data...\nList name: " + currentList.name + "\nIndex: " + index + "\nField: " + field + "\nValue: " + newValue);
         return true;
     });
+
+    // Turn the list into an editable table
+    $("#currentListTable").editableTableWidget();
 }
 
 function addEntry()

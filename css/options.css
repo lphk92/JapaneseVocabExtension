@@ -1,6 +1,7 @@
 body
 {
-    background-color: white;
+    /*background-color: white;*/
+    background-image: url('../rsc/tokyo.png');
     font-family: Arial;
 }
 input.invisible
@@ -35,10 +36,10 @@ select
 
 div.section
 {
-    background-color: white;
+    background-color: rgba(238, 238, 238, 0.6);
     margin: 5px;
-    border: 3px solid black; 
-    border-radius: 5px;
+    border: 3px solid #443333; 
+    border-radius: 2px;
     float: left;
 }
 div.title
@@ -80,7 +81,8 @@ div#left
 
 div#center
 {
-    width: 1000px;;
+    margin-left: 100px;
+    width: 1000px;
     float:left;
 }
 div#lists
