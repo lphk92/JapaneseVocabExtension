@@ -33,6 +33,7 @@ label
 div#lists
 {
     border: 1px solid black;
+    font-size: 15px;
     height: 200px;
 }
 .selected

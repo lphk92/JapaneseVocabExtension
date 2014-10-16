@@ -3,6 +3,7 @@ body
     /*background-color: white;*/
     background-image: url('../rsc/tokyo.png');
     font-family: Arial;
+    font-size: 15px;
 }
 input.invisible
 {
