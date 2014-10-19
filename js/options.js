@@ -117,7 +117,8 @@ function loadList(listName)
 
     // Add the selection listener to each of the entries 
     $("#currentListTable tr:not(.header)").click(function(){ 
-        $(this).toggleClass("selected");
+        if(window.event.ctrlKey)
+            $(this).toggleClass("selected");
     });
 
     // Add the change listener to each of the entries 
