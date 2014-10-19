@@ -58,6 +58,7 @@ function quizFunction(tab)
     }
 };
 
+versionUpdate("3.0.0");
 chrome.tabs.onCreated.addListener(quizFunction);
 chrome.tabs.onRemoved.addListener(quizFunction);
 updateIcon();

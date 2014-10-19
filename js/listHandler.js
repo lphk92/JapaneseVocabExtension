@@ -2,7 +2,6 @@ function storeList(listName, list)
 {
     var fullListName = "list_" + listName;
     var stringifiedList = JSON.stringify(list);
-    //alert("saving " + stringifiedList);
     localStorage[fullListName] = stringifiedList;
 }
 
