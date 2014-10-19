@@ -42,6 +42,4 @@ function versionUpdate(version)
         if (localStorage.getItem("quizMode") == null)
             localStorage["quizMode"] = "Normal";
     }
-
-    alert ("Version update to " + version + " complete");
 }
