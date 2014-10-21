@@ -44,7 +44,7 @@ function csvToVocabList(csv, name)
     {
         var parts = lines[i].split(",");
         var entry = {
-            "index":i,
+            "index":i-1,
             "kanji":parts[kanjiIndex],
             "reading":parts[readingIndex],
             "meaning":parts[meaningIndex],

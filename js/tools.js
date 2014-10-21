@@ -33,6 +33,7 @@ function versionUpdate(version)
             {
                 lists[i].list[j].index -= minIndex;
             }
+            storeList(listNames[i], lists[i]);
         }
     }
 
