@@ -8,6 +8,9 @@ function quizFunction(tab)
 {
     if (localStorage["active"] == "true")
     {
+        if (!localStorage["currentList"])
+            return;
+
         entry = getRandomEntry();
     
         var questionKanji = localStorage["questionKanji"] == "true";
@@ -40,13 +43,13 @@ function quizFunction(tab)
         else if (answerKana) a += left + entry.reading + right;
         else if (answerRomanji) a += left + romanjify(entry.reading) + right;
 
-        if (quizMode == "normal")
+        if (quizMode.toLowerCase() == "normal")
         {
             var question = q; 
             var answer = a;            
             var solution = entry.meaning;
         }
-        else if (quizMode == "kanji")
+        else if (quizMode.toLowerCase() == "kanji")
         {
             var question = entry.kanji;
             var answer = entry.kanji;

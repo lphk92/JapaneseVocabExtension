@@ -63,7 +63,7 @@ function setCurrentList(listName)
 
 function getListNames()
 {
-    var listNames = new Array();
+    var listNames = [];
     var indexCounter = 0;
     for (var i = 0; i < localStorage.length ; i++)
     {

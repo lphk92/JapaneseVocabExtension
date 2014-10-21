@@ -2,7 +2,7 @@ function updateIcon()
 {
     var active = localStorage["active"] == "true";
 
-    var iconPath = active ? "rsc/icon-active.png" : "rsc/icon.png";
+    var iconPath = active ? "rsc/icon-active.png" : "rsc/icon-inactive.png";
     var iconTitle = active ? "Active" : "Inactive";
     iconTitle = "Japanese Vocab Quiz: " + iconTitle;
 
@@ -13,17 +13,31 @@ function updateIcon()
 function versionUpdate(version)
 {
     var currVersion = localStorage["version"];
+
+    // Adjust list indices if necessary
+    var listNames = getListNames();
+    var lists = [];
+    for (var i = 0 ; i < listNames.length ; i++)
+    {
+        lists[i] = retrieveList(listNames[i]);
+        var minIndex = -1
+        for (var j = 0 ; j < lists[i].list.length ; j++)
+        {
+            var index = lists[i].list[j].index;
+            if (minIndex < 0 || index < minIndex)
+                minIndex = index;
+        }
+        if (minIndex > 0)
+        {
+            for (var j = 0 ; j < lists[i].list.length ; j++)
+            {
+                lists[i].list[j].index -= minIndex;
+            }
+        }
+    }
+
     if (currVersion != version)
     {
-        localStorage["version"] = version;
-        // Preserve old lists if necessary
-        /*var listNames = getListNames();
-        var lists = new Array();
-        for (var i = 0 ; i < listNames.length ; i++)
-        {
-            lists[i] = retrieveList(listNames[i]);
-        }*/
-
         // default settings
         if (localStorage.getItem("questionKanji") == null)
             localStorage["questionKanji"] = "true";
@@ -41,5 +55,9 @@ function versionUpdate(version)
 
         if (localStorage.getItem("quizMode") == null)
             localStorage["quizMode"] = "Normal";
+        if (localStorage.getItem("active") == null)
+            localStorage["active"] = "true";
+
+        localStorage["version"] = version;
     }
 }

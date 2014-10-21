@@ -121,19 +121,20 @@ function loadList(listName)
             $(this).toggleClass("selected");
     });
 
+    // Turn the list into an editable table
+    $("#currentListTable").editableTableWidget();
+
     // Add the change listener to each of the entries 
     var currentList = retrieveCurrentList();
     $("#currentListTable td").on('change', function(evt, newValue) {
         var index = $(this).attr("data-index");
         var field = $(this).attr("name");
-        currentList.list[index-1][field] = newValue;
+        currentList.list[index][field] = newValue;
         storeList(currentList.name, currentList);
         //alert("Stored new data...\nList name: " + currentList.name + "\nIndex: " + index + "\nField: " + field + "\nValue: " + newValue);
         return true;
     });
 
-    // Turn the list into an editable table
-    $("#currentListTable").editableTableWidget();
 }
 
 function addEntry()

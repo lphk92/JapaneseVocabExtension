@@ -1,6 +1,6 @@
 {
   "name": "Japanese Vocabulary Quiz",
-  "version": "2.1.2",
+  "version": "3.0.2",
   "description": "A simple quizzing extension that quizes the user on a Japanese vocab word every time they open or close a tab.",
   "manifest_version": 2,
 
@@ -15,6 +15,12 @@
   },
 
   "options_page": "options.html",
+
+  "icons" : {
+      "16": "rsc/icon16.png",
+      "48": "rsc/icon48.png",
+      "128": "rsc/icon128.png"
+  },
 
   "permissions": [
     "tabs", "http://*/*"
