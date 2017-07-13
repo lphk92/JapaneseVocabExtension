@@ -1,0 +1,174 @@
+<html>
+    <meta charset="UTF-8">
+    <head>
+        <title>Japanese Vocab Options</title>
+        <script src="static/jquery-1.9.1.js"></script>
+        <script src="static/mindmup-editabletable.js"></script>
+        <link rel="stylesheet" type="text/css" href="static/bootstrap.min.css">
+        <!--<link rel="stylesheet" type="text/css" href="css/options.css">-->
+        <style>
+        .row
+        {
+           margin-left: -5px;
+           margin-right: -5px;
+        }
+        #addEntryContent
+        {
+            margin-top: 20px;
+        }
+        #addEntryContent .form-group
+        {
+            width: 32%;
+        }
+        #addEntryContent input
+        {
+            width: 100%;
+        }
+        fieldset
+        {
+            margin-bottom: 10px;
+        }
+        .full-buttons .btn
+        {
+            width: 100%;
+            margin-bottom: 5px;
+        }
+        .well
+        {
+            height: 100px;
+        }
+        #addList
+        {
+            width: 100%;
+        }
+        th
+        {
+            text-align: center;
+        }
+        #currentListTable
+        {
+            width: 100%;
+        }
+        </style>
+    </head>
+
+    <body>
+        <a href="https://github.com/lphk92/JapaneseVocabExtension">
+            <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png">
+        </a>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-2">
+                    <div id="options" class="row full-buttons">
+                        <h1>Options</h1>
+
+                        <fieldset>
+                            <legend>Question</legend>
+                            <input type="checkbox" id="questionKanji"> Show Kanji <br>
+                            <input type="checkbox" id="questionKana"> Show Kana <br>
+                            <input type="checkbox" id="questionRomanji"> Show Romanji <br>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>Answer</legend>
+                            <input type="checkbox" id="answerKanji"> Show Kanji <br>
+                            <input type="checkbox" id="answerKana"> Show Kana <br>
+                            <input type="checkbox" id="answerRomanji"> Show Romanji <br>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>Quiz Mode</legend>
+                            <select class="form-control" id="mode">
+                                <option value="normal">Normal</option>
+                                <option value="kanji">Kanji</option>
+                            </select>
+                        </fieldset>
+
+                        <button class="btn btn-default" id="save">Save</button>
+                    </div>
+                    <div id="feedback" class="row full-buttons">
+                        <h1>Feedback</h1>
+                        <a class="btn btn-default"
+                            href="https://chrome.google.com/webstore/detail/japanese-vocabulary-quiz/nhfikdfbeedcdamonjiodafgkdelknhn/reviews">
+                            Write a Review
+                        </a>
+                        <a class="btn btn-default"
+                           href="https://chrome.google.com/webstore/support/nhfikdfbeedcdamonjiodafgkdelknhn?hl=en&gl=US#question">
+                            Ask a Question
+                        </a>
+                        <a id="request" class="btn btn-default"
+                           href="https://chrome.google.com/webstore/support/nhfikdfbeedcdamonjiodafgkdelknhn?hl=en&gl=US#feature">
+                            Request Feature
+                        </a>
+                        <a id="report" class="btn btn-default"
+                           href="https://chrome.google.com/webstore/support/nhfikdfbeedcdamonjiodafgkdelknhn?hl=en&gl=US#bug">
+                            Report a Bug
+                        </a>
+                    </div>
+                </div>
+                <div class="col-sm-offset-1 col-sm-8">
+                    <div id="lists" class="row">
+                        <div class="col-sm-4" id="listInfo">
+                            <h1>My Lists</h1>
+                            <div class="well" id="listNames"></div>
+
+                            <button class="btn btn-primary" id="renameList">Rename</button>
+                            <button class="btn btn-danger" id="deleteList">Delete List</button>
+                        </div>
+                        <div id="community" class="col-sm-4">
+                            <h1>Community Lists</h1>
+                            <div class="well" id="communityLists"></div>
+                        </div>
+                        <div class="col-sm-4" class="full-buttons">
+                            <h1>New List</h1>
+                            <div id="addListContent">
+                                <div class="form-group">
+                                    <label class="control-label" for="newListName">List Name</label>
+                                    <input type="text" id="newListName" class="form-control">
+                                </div>
+
+                                <label>Import CSV File</label>
+                                <button class="btn btn-default" id="fileButton">Select a file...</button>
+                                <input type="file" id="importFile" style="display: none">
+
+                                <button class="btn btn-default" id="clearFile">Clear File</button>
+                                <button class="btn btn-default" id="addList">Create List</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                    <div class="col-sm-12" id="current-list">
+                        <div id="currentListDisplay">
+                            <table class="table table-condensed table-striped" id="currentListTable">
+                                <thead>
+                                    <tr>
+                                        <th>Kanji</th>
+                                        <th>Reading</th>
+                                        <th>Meaning</th>
+                                    </tr>
+                                </thead>
+                                <tr>
+                                    <td>Stuff</td>
+                                    <td>Maffffin</td>
+                                    <td>Muffin</td>
+                                </tr>
+                                <tr>
+                                    <td>Stuff</td>
+                                    <td>Maffffin</td>
+                                    <td>Muffin</td>
+                                </tr>
+                            </table>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+
+    <script type="text/javascript" src="js/listHandler.js"></script>
+    <script type="text/javascript" src="js/csvToVocabList.js"></script>
+    <script type="text/javascript" src="js/options.js"></script>
+</html>

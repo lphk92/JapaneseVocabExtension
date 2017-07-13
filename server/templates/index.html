@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+    <body>
+        <h1>Genki 1</h1>
+        <div id="genki">
+        </div>
+    </body>
+    <script src="{{ url_for('static', filename='jquery-1.11.3.min.js') }}"></script>
+    <script>
+    function loadTable(container_id, data)
+    {
+        document.getElementById(container_id).innerHTML = "";
+
+        table_html = "<table>";
+        for (var i = 1 ; i < data.length ; i++)
+        {
+            row_html = "<tr><td>" + unescape(data[i][0]) +
+                       "</td><td>" + unescape(data[i][1]) +
+                       "</td><td>" + unescape(data[i][2]) + "</td></tr>";
+            table_html += row_html;
+        }
+        table_html += "</table>"
+        document.getElementById(container_id).innerHTML = table_html;
+    }
+
+    jQuery.get(url = "http://localhost:5000/list/genki/Genki1",
+               success = function(response) {
+                   data = JSON.parse(response);
+                   loadTable("genki", data);
+               });
+    </script>
+</html>
