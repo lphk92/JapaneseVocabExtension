@@ -40,7 +40,7 @@ def list_sources():
     list_dict = dict()
     for k, v in lists.items():
         list_dict[k] = list(v.keys())
-    return json_data([ {"category": k, "lists": v}
+    return json_data([ {"category": k, "lists": sorted(list(v))}
                        for k, v in list_dict.items() ])
 
 
@@ -61,8 +61,8 @@ def get_list(category, filename):
     if category in lists:
         if filename in lists[category]:
             return json_data([
-                { "reading": l[0],
-                  "kanji":   l[1],
+                { "kanji":   l[0],
+                  "reading": l[1],
                   "meaning": l[2] }
                 # Skip the first entry (header row)
                 for l in lists[category][filename][1:]
