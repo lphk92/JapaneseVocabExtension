@@ -1,18 +1,23 @@
 import codecs
 import json
 import os
+import re
 
 #from crossdomain import crossdomain
 from server import app
+
+
+def natural_key(string_):
+    """See http://www.codinghorror.com/blog/archives/001018.html"""
+    return [int(s) if s.isdigit() else s for s in re.split(r'(\d+)', string_)]
+
 
 list_dir = "./server/lists"
 lists = {}
 
 for d in os.listdir(list_dir):
-    lists[d] = [f.split('.')[0] for f in os.listdir(os.path.join(list_dir, d))]
-    #for filename in os.listdir(os.path.join(list_dir, d)):
-    #    name = filename.split('.')[0]
-    #    lists[d][name] = ""
+    list_names = [ f.split('.')[0] for f in os.listdir(os.path.join(list_dir, d)) ]
+    lists[d] = sorted(list_names, key=natural_key)
 
 
 def json_data(data):
@@ -33,15 +38,14 @@ def json_error(title, message):
 @app.route("/list", methods=["GET"])
 #@crossdomain(origin='*')
 def list_sources():
-    return json_data([ {"category": k, "lists": sorted(v)}
+    return json_data([ {"category": k, "lists": v}
                        for k, v in lists.items() ])
 
 
 @app.route("/list/<category>", methods=["GET"])
 def get_lists_for_category(category):
     if category in lists:
-        return json_data({"lists": sorted(lists[category]) })
-                          #sorted(list(lists[category].keys())) })
+        return json_data({ "lists": lists[category] })
     else:
         return json_error(
                    "Invalid Category",
