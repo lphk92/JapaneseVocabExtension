@@ -9,14 +9,10 @@ list_dir = "./server/lists"
 lists = {}
 
 for d in os.listdir(list_dir):
-    lists[d] = dict()
-    for filename in os.listdir(os.path.join(list_dir, d)):
-        name = filename.split('.')[0]
-        with codecs.open(
-                format(os.path.join(list_dir, d, filename)),
-                'r', 'utf-8') as f:
-            data = [l.split(',') for l in f.readlines()]
-            lists[d][name] = data
+    lists[d] = [f.split('.')[0] for f in os.listdir(os.path.join(list_dir, d))]
+    #for filename in os.listdir(os.path.join(list_dir, d)):
+    #    name = filename.split('.')[0]
+    #    lists[d][name] = ""
 
 
 def json_data(data):
@@ -37,18 +33,15 @@ def json_error(title, message):
 @app.route("/list", methods=["GET"])
 #@crossdomain(origin='*')
 def list_sources():
-    list_dict = dict()
-    for k, v in lists.items():
-        list_dict[k] = list(v.keys())
-    return json_data([ {"category": k, "lists": sorted(list(v))}
-                       for k, v in list_dict.items() ])
+    return json_data([ {"category": k, "lists": sorted(v)}
+                       for k, v in lists.items() ])
 
 
 @app.route("/list/<category>", methods=["GET"])
 def get_lists_for_category(category):
     if category in lists:
-        return json_data({"lists":
-                          sorted(list(lists[category].keys())) })
+        return json_data({"lists": sorted(lists[category]) })
+                          #sorted(list(lists[category].keys())) })
     else:
         return json_error(
                    "Invalid Category",
@@ -60,13 +53,10 @@ def get_lists_for_category(category):
 def get_list(category, filename):
     if category in lists:
         if filename in lists[category]:
-            return json_data([
-                { "kanji":   l[0],
-                  "reading": l[1],
-                  "meaning": l[2] }
-                # Skip the first entry (header row)
-                for l in lists[category][filename][1:]
-            ])
+            # Load up the list JSON
+            list_path = os.path.join(list_dir, category, filename + ".json")
+            with open(list_path, "r") as f:
+                return json_data(json.loads(f.read()))
         else:
             return json_error(
                     "Invalid List",
