@@ -8,7 +8,7 @@
 
     <body>
         <div class="container">
-            <div id="lists"> </div>
+            <div class="row" id="lists"> </div>
         </div>
     </body>
 
@@ -23,18 +23,17 @@
             data = JSON.parse(response)["data"];
             for(var i = 0 ; i < data.length ; i++)
             {
-                var category = $("<div><h2>" +
+                var category = $("<div class='col-md-6'><h2>" +
                                  data[i]["category"] +
                                  "</h2></div>")
 
-                var ul = $("<ul></ul>")
                 for (var j = 0 ; j < data[i]["lists"].length ; j++)
                 {
                     var list_name = data[i]["lists"][j]
-                    var li = $("<li><a href='/explore/" + data[i]["category"] + "/" + list_name + "'>" + list_name + "</a>"+ "</li>");
-                    ul.append(li);
+                    var entry = $("<a class='entry col-md-2' href='/explore/" + data[i]["category"] + "/" + list_name + "'>" + list_name + "</a>");
+                    category.append(entry);
                 }
-                category.append(ul);
+
                 $("#lists").append(category)
             }
         }

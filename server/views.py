@@ -7,12 +7,12 @@ def index():
     return render_template('index.html')
 
 
-@app.route("/explore")
+@app.route("/explore/")
 def explore():
     return render_template('explore.html')
 
 
-@app.route("/explore/<category>/<list_name>")
+@app.route("/explore/<category>/<list_name>/")
 def view_list(category, list_name):
     return render_template('view_list.html',
                            category=category,
